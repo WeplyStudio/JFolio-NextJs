@@ -4,9 +4,8 @@
 
 @layer base {
   :root {
-    /* Simplified color palette, mostly relying on direct Tailwind classes from the new HTML */
-    --background: 0 0% 100%; /* white */
-    --foreground: 222.2 84% 4.9%; /* gray-900 equivalent */
+    --background: 0 0% 100%; 
+    --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -14,33 +13,32 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Primary will be blue, matching 'blue-600' */
-    --primary: 217 91.2% 59.8%; /* blue-600 */
-    --primary-foreground: 0 0% 100%; /* white */
+    /* Primary is blue, matching 'blue-600' from EasyKripsi */
+    --primary: 217 91.2% 59.8%; 
+    --primary-foreground: 0 0% 100%;
     
-    /* Secondary can be a lighter blue or gray */
-    --secondary: 210 40% 96.1%; /* slate-100 / gray-100 */
-    --secondary-foreground: 222.2 47.4% 11.2%; /* slate-900 */
+    /* Secondary is a lighter gray/blue */
+    --secondary: 210 40% 96.1%; 
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 210 40% 96.1%; /* slate-100 / gray-100 for muted backgrounds like bg-gray-50 */
-    --muted-foreground: 215.4 16.3% 46.9%; /* slate-500 for muted text */
+    --muted: 210 40% 96.1%; 
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    /* Accent will also be blue, similar to primary for this design */
-    --accent: 217 91.2% 59.8%; /* blue-600 */
-    --accent-foreground: 0 0% 100%; /* white */
+    /* Accent is also blue for this theme */
+    --accent: 217 91.2% 59.8%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%; /* slate-200 / gray-200 for borders */
+    --border: 214.3 31.8% 91.4%; 
     --input: 214.3 31.8% 91.4%;
-    --ring: 217 91.2% 59.8%; /* blue-600 for focus rings */
+    --ring: 217 91.2% 59.8%; 
 
-    --radius: 0.5rem; /* Default radius from shadcn, can be adjusted if needed */
+    --radius: 0.5rem;
   }
 
   .dark {
-    /* Basic dark theme, can be expanded if needed */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
@@ -77,32 +75,16 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Plus Jakarta Sans', sans-serif; /* Ensure this is the default */
-    font-feature-settings: "rlig" 1, "calt" 1; /* Default from shadcn */
+    font-family: 'Plus Jakarta Sans', sans-serif; /* EasyKripsi font */
+    font-feature-settings: "rlig" 1, "calt" 1; 
   }
 
-  /* Container utility from original HTML (if any custom aspects needed beyond Tailwind's) */
   .container {
-    @apply mx-auto px-4 sm:px-6 lg:px-8; /* Common container padding */
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
   }
-}
 
-/* For the rotating text in Hero section */
-.rotating-text-enter {
-  opacity: 0;
-  transform: translateY(1rem);
-}
-.rotating-text-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 300ms, transform 300ms;
-}
-.rotating-text-exit {
-  opacity: 1;
-  transform: translateY(0);
-}
-.rotating-text-exit-active {
-  opacity: 0;
-  transform: translateY(-1rem);
-  transition: opacity 300ms, transform 300ms;
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline;
+  }
 }

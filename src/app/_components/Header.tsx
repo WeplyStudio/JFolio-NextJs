@@ -1,23 +1,28 @@
+
 "use client";
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button'; // Assuming Button component is still useful
-import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet'; // For mobile nav
-import { ShoppingBag, Menu as MenuIcon, X as XIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Menu as MenuIcon, X as XIcon, MessageSquare } from 'lucide-react'; // Using MessageSquare for "Contact Me"
 import { siteConfig, navLinks } from '@/lib/data';
 import type { NavLink as NavLinkType } from '@/lib/types';
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const nameParts = siteConfig.name.split(' ');
+  const firstName = nameParts[0];
+  const lastName = nameParts.slice(1).join(' ');
+
   return (
-    <header className="sticky top-0 z-50 transition-all duration-300 bg-white shadow-sm">
-      <div className="container mx-auto"> {/* Ensure container is applied for consistent padding */}
-        <div className="flex justify-between items-center h-14 md:h-18">
+    <header className="sticky top-0 z-50 transition-all duration-300 bg-background shadow-sm border-b border-border/60">
+      <div className="container mx-auto">
+        <div className="flex justify-between items-center h-16 md:h-18">
           <div className="flex-shrink-0">
-            <Link href="/" className="text-gray-900 font-bold text-xl">
-              {siteConfig.name.split(' ')[0]}.<span className="text-blue-600">{siteConfig.name.split(' ')[1]}</span>
+            <Link href="#home" className="text-foreground font-bold text-xl hover:opacity-80 transition-opacity">
+              {firstName}{lastName && <span className="text-primary">.{lastName}</span>}
             </Link>
           </div>
           
@@ -28,7 +33,7 @@ export function Header() {
                 href={link.href}
                 target={link.external ? "_blank" : "_self"}
                 rel={link.external ? "noopener noreferrer" : ""}
-                className={`text-gray-600 hover:text-blue-600 transition-colors whitespace-nowrap ${link.external ? `link-${link.label.toLowerCase()}` : ''}`}
+                className="text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
               >
                 {link.label}
               </Link>
@@ -36,37 +41,34 @@ export function Header() {
           </nav>
 
           <div className="flex items-center space-x-4">
-            {/* The "Beli Sekarang" link in the example HTML goes to '#', which is unusual for a purchase button.
-                I'll make it a button that could potentially open a modal or go to a specific product page.
-                For now, linking to the 'Advance' product page as a primary CTA. */}
-            <Button asChild className="hidden md:inline-flex bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium">
-              <Link href="https://iklilzaki.myr.id/pl/template-skripsi-easykripsi-advance" target="_blank" rel="noopener noreferrer">
-                <ShoppingBag className="h-4 w-4 mr-2" />
-                Beli Sekarang
+            <Button asChild className="hidden md:inline-flex bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-medium">
+              <Link href="#contact">
+                <MessageSquare className="h-4 w-4 mr-2" />
+                Contact Me
               </Link>
             </Button>
             
             <div className="md:hidden">
               <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                 <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="text-gray-600 hover:text-blue-600">
+                  <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary">
                     <MenuIcon className="h-6 w-6" />
                     <span className="sr-only">Open menu</span>
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="left" className="w-[300px] sm:w-[340px] bg-white p-0">
-                  <SheetHeader className="p-6 border-b border-gray-200">
+                <SheetContent side="left" className="w-[300px] sm:w-[340px] bg-card p-0">
+                  <SheetHeader className="p-6 border-b border-border">
                     <SheetTitle>
                       <Link 
-                        href="/" 
-                        className="text-gray-900 font-bold text-xl"
+                        href="#home" 
+                        className="text-foreground font-bold text-xl hover:opacity-80 transition-opacity"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        {siteConfig.name.split(' ')[0]}.<span className="text-blue-600">{siteConfig.name.split(' ')[1]}</span>
+                        {firstName}{lastName && <span className="text-primary">.{lastName}</span>}
                       </Link>
                     </SheetTitle>
-                     <Button variant="ghost" size="icon" className="absolute right-4 top-4" onClick={() => setIsMobileMenuOpen(false)}>
-                        <XIcon className="h-5 w-5 text-gray-500"/>
+                     <Button variant="ghost" size="icon" className="absolute right-4 top-4 text-muted-foreground hover:text-primary" onClick={() => setIsMobileMenuOpen(false)}>
+                        <XIcon className="h-5 w-5"/>
                         <span className="sr-only">Close menu</span>
                     </Button>
                   </SheetHeader>
@@ -78,20 +80,18 @@ export function Header() {
                         target={link.external ? "_blank" : "_self"}
                         rel={link.external ? "noopener noreferrer" : ""}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`block py-2 px-3 rounded-md font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors ${link.external ? `link-${link.label.toLowerCase()}` : ''}`}
+                        className="block py-2 px-3 rounded-md font-medium text-foreground hover:bg-muted hover:text-primary transition-colors"
                       >
                         {link.label}
                       </Link>
                     ))}
-                     <Button asChild className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium">
+                     <Button asChild className="w-full mt-4 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-medium">
                         <Link 
-                          href="https://iklilzaki.myr.id/pl/template-skripsi-easykripsi-advance" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
+                          href="#contact"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
-                            <ShoppingBag className="h-4 w-4 mr-2" />
-                            Beli Sekarang
+                            <MessageSquare className="h-4 w-4 mr-2" />
+                            Contact Me
                         </Link>
                     </Button>
                   </nav>

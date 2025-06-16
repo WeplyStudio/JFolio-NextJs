@@ -1,14 +1,11 @@
 import type { Metadata } from 'next';
 import './globals.css';
-// Removed Toaster as it's not in the new design
-
-// Ensure the font is correctly imported if not already via globals.css or tailwind config
-// For Plus Jakarta Sans, we'll add it via <link> tags like in the HTML example.
+import { Toaster } from "@/components/ui/toaster"; // Re-added for portfolio contact form
 
 export const metadata: Metadata = {
-  title: 'Easy Kripsi', // Updated title
-  description: 'Otomatisasi format skripsi/tesis Anda dalam sekejap. Hemat waktu penulisan skripsi dengan pintasan keyboard dan alat cerdas untuk Word.',
-  keywords: "template skripsi, format skripsi, otomatisasi skripsi, tesis, microsoft word, easy kripsi",
+  title: 'My Portfolio | Developer & Creator', // Updated for portfolio
+  description: 'Welcome to my personal portfolio. Discover my projects, photography, and skills.', // Updated for portfolio
+  keywords: "portfolio, developer, designer, projects, photography, web development, nextjs, react",
 };
 
 export default function RootLayout({
@@ -28,11 +25,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      {/* The body style "overflow: unset" from HTML is default browser behavior.
-          The min-h-screen on the main div in page.tsx will manage layout height. */}
-      <body className="font-body antialiased bg-white text-gray-900"> {/* Updated base styles */}
+      <body className="font-body antialiased bg-background text-foreground">
         {children}
-        {/* <Toaster /> Toaster removed */}
+        <Toaster />
       </body>
     </html>
   );

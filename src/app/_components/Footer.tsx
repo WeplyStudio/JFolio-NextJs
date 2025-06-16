@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -14,20 +15,25 @@ interface AccordionItemProps {
 function FooterAccordionItem({ title, links }: AccordionItemProps) {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="border-b border-gray-300">
+    <div className="border-b border-border/70">
       <button
         className="w-full py-4 flex justify-between items-center text-left"
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
       >
-        <h3 className="font-medium text-gray-900">{title}</h3>
-        <ChevronDown className={`h-4 w-4 text-gray-500 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+        <h3 className="font-medium text-foreground">{title}</h3>
+        <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
       {isOpen && (
         <ul className="pt-2 pb-4 space-y-2.5 pl-2">
           {links.map(link => (
             <li key={link.label}>
-              <Link href={link.href} className={`text-gray-500 hover:text-gray-800 transition-colors ${link.className || ''}`}>
+              <Link 
+                href={link.href} 
+                className={`text-muted-foreground hover:text-primary transition-colors ${link.className || ''}`}
+                target={link.external ? "_blank" : "_self"}
+                rel={link.external ? "noopener noreferrer" : ""}
+              >
                 {link.label}
               </Link>
             </li>
@@ -38,44 +44,55 @@ function FooterAccordionItem({ title, links }: AccordionItemProps) {
   );
 }
 
-
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const nameParts = siteConfig.name.split(' ');
+  const firstName = nameParts[0];
+  const lastName = nameParts.slice(1).join(' ');
+  const styledName = <>{firstName}{lastName && <span className="text-primary">.{lastName}</span>}</>;
+
 
   return (
     <>
-      {/* Copyright strip before main footer, as per HTML structure */}
-      <div className="bg-gray-50 py-8 border-t border-gray-200">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-gray-500 text-sm">
-            © {currentYear} {siteConfig.name} — Developed by{' '}
-            {siteConfig.developers.map((dev, index) => (
-              <span key={dev.name} className="font-medium text-gray-600">
-                {dev.handle}
-                {index < siteConfig.developers.length - 1 && ' and '}
-              </span>
-            ))}
-          </p>
-        </div>
-      </div>
-
-      <footer className="bg-gray-100 pt-8 text-sm">
-        <div className="container mx-auto px-4 md:px-6"> {/* main-container is just container */}
-          {/* Mobile Accordion Footer */}
+      <footer className="bg-card border-t border-border/60 pt-8 text-sm text-muted-foreground">
+        <div className="container mx-auto px-4 md:px-6">
           <div className="md:hidden">
-            <FooterAccordionItem title="Products" links={footerLinks.products} />
-            <FooterAccordionItem title="Support" links={footerLinks.support} />
-            <FooterAccordionItem title="Company" links={footerLinks.company} />
+            <FooterAccordionItem title="Explore" links={footerLinks.explore} />
+            <FooterAccordionItem title="Connect" links={footerLinks.connect} />
+            {footerLinks.tools && footerLinks.tools.length > 0 && (
+                <FooterAccordionItem title="Tools & Resources" links={footerLinks.tools} />
+            )}
           </div>
 
-          {/* Desktop Grid Footer */}
-          <div className="hidden md:grid md:grid-cols-3 py-6 border-b border-gray-300">
+          <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-4 gap-8 py-6 border-b border-border/70">
+            <div className="lg:col-span-1">
+                <Link href="#home" className="text-xl font-bold text-foreground hover:opacity-80 transition-opacity mb-4 inline-block">
+                    {styledName}
+                </Link>
+                <p className="text-xs max-w-xs">
+                    {siteConfig.jobTitle}. Crafting digital experiences from {siteConfig.location}.
+                </p>
+                 <div className="flex space-x-3 mt-4">
+                    {siteConfig.socials.map((social) => (
+                      <Link
+                        key={social.name}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary transition-colors p-1.5 rounded-full hover:bg-muted"
+                        aria-label={social.name}
+                      >
+                        <social.icon className="h-5 w-5" />
+                      </Link>
+                    ))}
+                  </div>
+            </div>
             <div>
-              <h3 className="font-medium text-gray-900 mb-4">Products</h3>
+              <h3 className="font-medium text-foreground mb-4">Explore</h3>
               <ul className="space-y-2.5">
-                {footerLinks.products.map(link => (
+                {footerLinks.explore.map(link => (
                   <li key={link.label}>
-                    <Link href={link.href} className={`text-gray-500 hover:text-gray-800 transition-colors ${link.className || ''}`}>
+                    <Link href={link.href} className={`text-muted-foreground hover:text-primary transition-colors ${link.className || ''}`}>
                       {link.label}
                     </Link>
                   </li>
@@ -83,44 +100,46 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="font-medium text-gray-900 mb-4">Support</h3>
+              <h3 className="font-medium text-foreground mb-4">Connect</h3>
               <ul className="space-y-2.5">
-                {footerLinks.support.map(link => (
+                {footerLinks.connect.map(link => (
                   <li key={link.label}>
-                    <Link href={link.href} className="text-gray-500 hover:text-gray-800 transition-colors">
+                    <Link 
+                        href={link.href} 
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                        target={link.external ? "_blank" : "_self"}
+                        rel={link.external ? "noopener noreferrer" : ""}
+                    >
                       {link.label}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
-            <div>
-              <h3 className="font-medium text-gray-900 mb-4">Company</h3>
-              <ul className="space-y-2.5">
-                {footerLinks.company.map(link => (
-                  <li key={link.label}>
-                    <Link href={link.href} className="text-gray-500 hover:text-gray-800 transition-colors">
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+             {footerLinks.tools && footerLinks.tools.length > 0 && (
+                <div>
+                    <h3 className="font-medium text-foreground mb-4">Tools & Resources</h3>
+                    <ul className="space-y-2.5">
+                        {footerLinks.tools.map(link => (
+                        <li key={link.label}>
+                            <Link href={link.href} className="text-muted-foreground hover:text-primary transition-colors">
+                            {link.label}
+                            </Link>
+                        </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
           </div>
           
-          {/* Bottom Bar */}
-          <div className="py-5 text-xs text-gray-500">
-            <div className="flex flex-col md:flex-row md:justify-between border-t border-gray-300 pt-5">
+          <div className="py-6 text-xs">
+            <div className="flex flex-col md:flex-row md:justify-between items-center border-t border-border/70 pt-6">
               <p className="text-center md:text-left mb-4 md:mb-0">
-                Copyright © {currentYear} {siteConfig.name}. All rights reserved.
-                <br className="md:hidden" />
-                <span className="md:ml-1">
-                  Developed by {siteConfig.developers.map(dev => dev.handle).join(' and ')}
-                </span>
+                © {currentYear} {siteConfig.name}. All rights reserved.
               </p>
-              <div className="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6">
+              <div className="flex flex-wrap justify-center md:justify-end gap-x-4 gap-y-2">
                 {footerLinks.legal.map(link => (
-                   <Link key={link.label} href={link.href} className="hover:underline mobile-tap-area">
+                   <Link key={link.label} href={link.href} className="hover:text-primary hover:underline">
                     {link.label}
                   </Link>
                 ))}

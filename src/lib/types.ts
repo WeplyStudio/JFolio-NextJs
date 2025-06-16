@@ -1,42 +1,75 @@
-// Removed Project, Photo, Skill, ExperienceItem as they are not used in the new design
+import type { LucideIcon } from 'lucide-react';
 
 export interface NavLink {
   href: string;
   label: string;
-  external?: boolean; // To handle external links in nav
+  external?: boolean;
+  icon?: LucideIcon; // Optional icon for nav links
 }
 
-// Add any new types specific to "Easy Kripsi" if needed
-// For example, for features, testimonials, etc.
-
-export interface FeatureComparisonItem {
-  feature: string;
-  basic: boolean | string; // boolean for check, string for text
-  advance: boolean | string;
-  description?: string;
+export interface SocialLink {
+  name: string;
+  url: string;
+  icon: LucideIcon;
+  handle?: string; // e.g. @username
 }
 
-export interface AdvantageItem {
+export interface Project {
+  id: string;
   title: string;
   description: string;
-  iconName: "Zap" | "Clock" | "ThumbsUp"; // Or a more generic string if icons vary widely
+  imageUrl: string;
+  imageHint?: string;
+  tags: string[];
+  projectUrl?: string;
+  repoUrl?: string;
 }
 
-export interface TestimonialItem {
-  quote: string;
+export interface Photo {
+  id: string;
+  title: string;
+  description?: string;
+  imageUrl: string;
+  imageHint?: string;
+  category?: string;
+}
+
+export interface Skill {
   name: string;
-  university: string;
-  avatarInitial: string;
-  avatarBg: string; // e.g. "bg-blue-500"
+  icon?: LucideIcon; // Or React.ComponentType if using custom SVGs
+  level?: number; // Optional skill level 0-100
+}
+
+export interface ExperienceItem {
+  role: string;
+  company: string;
+  duration: string;
+  description: string;
+}
+
+export interface AboutData {
+  bio: string;
+  skills: Skill[];
+  experience: ExperienceItem[];
 }
 
 export interface FooterLinkItem {
   href: string;
   label: string;
+  external?: boolean;
   className?: string;
 }
 
 export interface FooterSection {
   title: string;
   links: FooterLinkItem[];
+}
+
+// Types for SEO Keyword Generator
+export interface SeoKeywordGeneratorInput {
+  portfolioContent: string;
+}
+
+export interface SeoKeywordGeneratorOutput {
+  keywords: string; // Comma-separated
 }

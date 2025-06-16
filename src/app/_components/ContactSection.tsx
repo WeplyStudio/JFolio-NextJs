@@ -1,3 +1,4 @@
+
 import { SectionWrapper } from './SectionWrapper';
 import { ContactForm } from './ContactForm';
 import { siteConfig } from '@/lib/data';
@@ -13,45 +14,58 @@ export function ContactSection() {
           Have a project in mind or just want to say hello? Feel free to reach out.
         </p>
       </div>
-      <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto items-start">
-        <div className="space-y-6 p-6 bg-card rounded-lg shadow-xl border border-border/50">
-            <h3 className="text-2xl font-semibold text-accent mb-4 font-headline">Contact Information</h3>
-            <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                    <Mail className="h-5 w-5 text-primary" />
-                    <Link href={`mailto:${siteConfig.email}`} className="text-foreground hover:text-accent transition-colors">
-                        {siteConfig.email}
-                    </Link>
+      <div className="grid md:grid-cols-2 gap-10 md:gap-16 max-w-5xl mx-auto items-start">
+        <div className="space-y-6 p-6 md:p-8 bg-card rounded-xl shadow-xl border border-border/60">
+            <h3 className="text-2xl font-semibold text-primary mb-6 font-headline">Contact Information</h3>
+            <div className="space-y-5">
+                <div className="flex items-start space-x-3 group">
+                    <Mail className="h-5 w-5 text-primary/80 mt-1 shrink-0" />
+                    <div>
+                        <h4 className="font-medium text-foreground">Email</h4>
+                        <Link href={`mailto:${siteConfig.email}`} className="text-muted-foreground group-hover:text-primary transition-colors break-all">
+                            {siteConfig.email}
+                        </Link>
+                    </div>
                 </div>
-                {/* Add more contact info if needed e.g. Phone, Location */}
-                <div className="flex items-center space-x-3">
-                    <Phone className="h-5 w-5 text-primary" />
-                    <span className="text-foreground/80">(123) 456-7890 (Optional)</span>
-                </div>
-                 <div className="flex items-center space-x-3">
-                    <MapPin className="h-5 w-5 text-primary" />
-                    <span className="text-foreground/80">[Your City, Country]</span>
-                </div>
-            </div>
-            <div className="mt-6 pt-6 border-t border-border/50">
-                 <h4 className="text-lg font-semibold text-accent mb-3">Follow Me</h4>
-                 <div className="flex space-x-4">
-                    {siteConfig.socials.map((social) => (
-                      <Link
-                        key={social.name}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-accent transition-colors p-2 rounded-full hover:bg-muted"
-                        aria-label={social.name}
-                      >
-                        <social.icon className="h-6 w-6" />
-                      </Link>
-                    ))}
+                {siteConfig.phone && (
+                  <div className="flex items-start space-x-3 group">
+                      <Phone className="h-5 w-5 text-primary/80 mt-1 shrink-0" />
+                       <div>
+                          <h4 className="font-medium text-foreground">Phone</h4>
+                          <span className="text-muted-foreground group-hover:text-primary transition-colors">{siteConfig.phone}</span>
+                      </div>
                   </div>
+                )}
+                 <div className="flex items-start space-x-3 group">
+                    <MapPin className="h-5 w-5 text-primary/80 mt-1 shrink-0" />
+                     <div>
+                        <h4 className="font-medium text-foreground">Location</h4>
+                        <span className="text-muted-foreground group-hover:text-primary transition-colors">{siteConfig.location}</span>
+                    </div>
+                </div>
             </div>
+            {siteConfig.socials && siteConfig.socials.length > 0 && (
+                <div className="mt-8 pt-6 border-t border-border/60">
+                    <h4 className="text-lg font-semibold text-primary mb-3">Follow Me</h4>
+                    <div className="flex flex-wrap gap-3">
+                        {siteConfig.socials.map((social) => (
+                        <Link
+                            key={social.name}
+                            href={social.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-muted-foreground hover:text-primary transition-colors p-2 rounded-full hover:bg-muted flex items-center space-x-2 border border-transparent hover:border-primary/30"
+                            aria-label={social.name}
+                        >
+                            <social.icon className="h-5 w-5" />
+                            <span className="text-xs hidden sm:inline">{social.name}</span>
+                        </Link>
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
-        <div className="p-6 bg-card rounded-lg shadow-xl border border-border/50">
+        <div className="p-6 md:p-8 bg-card rounded-xl shadow-xl border border-border/60">
           <ContactForm />
         </div>
       </div>
