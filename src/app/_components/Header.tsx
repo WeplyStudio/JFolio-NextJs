@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
-import { Menu as MenuIcon, X as XIcon, MessageSquare } from 'lucide-react'; 
+import { Menu as MenuIcon, MessageSquare } from 'lucide-react'; 
 import { siteConfig, navLinks } from '@/lib/data';
 import type { NavLink as NavLinkType } from '@/lib/types';
 
@@ -68,10 +68,8 @@ export function Header() {
                         {firstName}{lastName && <span className="text-primary">.{lastName}</span>}
                       </Link>
                     </SheetTitle>
-                     <Button variant="ghost" size="icon" className="absolute right-4 top-4 text-muted-foreground hover:text-primary" onClick={() => setIsMobileMenuOpen(false)}>
-                        <XIcon className="h-5 w-5"/>
-                        <span className="sr-only">Close menu</span>
-                    </Button>
+                    {/* The redundant X button was here and has been removed. 
+                        SheetContent provides its own close button. */}
                   </SheetHeader>
                   <nav className="flex flex-col space-y-2 p-6">
                     {navLinks.map((link: NavLinkType) => (
