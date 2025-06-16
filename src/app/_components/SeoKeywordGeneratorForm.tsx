@@ -20,10 +20,11 @@ export function SeoKeywordGeneratorForm() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!portfolioContent.trim()) {
+    const trimmedContent = portfolioContent.trim();
+    if (trimmedContent.length < 50) {
       toast({
-        title: "Input Required",
-        description: "Please enter some content about your portfolio.",
+        title: "Input Too Short",
+        description: "Please enter at least 50 characters about your portfolio.",
         variant: "destructive",
       });
       return;
@@ -32,19 +33,23 @@ export function SeoKeywordGeneratorForm() {
     setIsLoading(true);
     setKeywords([]);
     try {
-      const input: SeoKeywordGeneratorInput = { portfolioContent };
+      const input: SeoKeywordGeneratorInput = { portfolioContent: trimmedContent };
       const result: SeoKeywordGeneratorOutput = await generateSeoKeywords(input);
       setKeywords(result.keywords.split(',').map(k => k.trim()).filter(k => k));
       toast({
         title: "Keywords Generated!",
         description: "Successfully generated SEO keywords.",
-        variant: "default", // Use default for success, it will pick up primary theme
+        variant: "default",
       });
     } catch (error) {
       console.error("Error generating SEO keywords:", error);
+      let errorMessage = "Failed to generate SEO keywords. Please try again.";
+      if (error instanceof Error && error.message.includes("Invalid input")) {
+        errorMessage = error.message; // Show specific Zod error message if available
+      }
       toast({
         title: "Error",
-        description: "Failed to generate SEO keywords. Please try again.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
@@ -68,13 +73,13 @@ export function SeoKeywordGeneratorForm() {
           <Wand2 className="mr-2 h-6 w-6" /> AI SEO Keyword Generator
         </CardTitle>
         <CardDescription className="text-muted-foreground">
-          Enter content about your portfolio (e.g., skills, project descriptions, about me) to generate relevant SEO keywords.
+          Enter content about your portfolio (e.g., skills, project descriptions, about me - minimum 50 characters) to generate relevant SEO keywords.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <Label htmlFor="portfolioContent" className="text-foreground/80">Your Content</Label>
+            <Label htmlFor="portfolioContent" className="text-foreground/80">Your Content (min. 50 characters)</Label>
             <Textarea
               id="portfolioContent"
               value={portfolioContent}
@@ -83,9 +88,15 @@ export function SeoKeywordGeneratorForm() {
               rows={8}
               className="mt-1 bg-background border-border focus:border-primary focus:ring-primary"
               disabled={isLoading}
+              aria-describedby="content-error"
             />
+            {portfolioContent.trim().length > 0 && portfolioContent.trim().length < 50 && (
+                 <p id="content-error" className="mt-1 text-sm text-destructive">
+                    Content must be at least 50 characters. Currently: {portfolioContent.trim().length}
+                </p>
+            )}
           </div>
-          <Button type="submit" disabled={isLoading} className="w-full md:w-auto bg-primary text-primary-foreground hover:bg-primary/90 transition-transform hover:scale-105 shadow-md">
+          <Button type="submit" disabled={isLoading || (portfolioContent.trim().length > 0 && portfolioContent.trim().length < 50) } className="w-full md:w-auto bg-primary text-primary-foreground hover:bg-primary/90 transition-transform hover:scale-105 shadow-md">
             {isLoading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
