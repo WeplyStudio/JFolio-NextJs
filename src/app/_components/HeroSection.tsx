@@ -49,7 +49,7 @@ export function HeroSection() {
             unoptimized={true} // GIFs are often better unoptimized by next/image
             className="rounded-xl shadow-2xl object-cover border-4 border-card"
           />
-           <div className="absolute -bottom-4 -right-4 bg-card p-3 rounded-lg shadow-xl border border-border/80">
+           <div className="absolute bottom-4 right-4 bg-card p-3 rounded-lg shadow-xl border border-border/80">
             <p className="text-sm font-semibold text-primary">Digital Creator</p>
             <p className="text-xs text-muted-foreground">Innovate & Inspire</p>
           </div>
