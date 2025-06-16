@@ -49,23 +49,18 @@ export const aboutData = {
   ] as Skill[],
   experience: [
     {
-      role: "Senior Developer",
-      company: "Tech Solutions Inc.",
-      duration: "Jan 2021 - Present",
-      description: "Leading development of innovative web applications, mentoring junior developers, and driving a culture of quality and performance.",
+      role: "Founder",
+      company: "Weply Studio (sekarang menjadi Zylo)",
+      duration: "2021 - Present",
+      description: "Memimpin visi, strategi, dan pengembangan produk di Weply Studio, yang kini telah bertransformasi menjadi Zylo. Berfokus pada solusi digital inovatif.",
     },
-    {
-      role: "Freelance Photographer",
-      company: "Self-Employed",
-      duration: "Jun 2018 - Present",
-      description: "Capturing portraits, events, and landscapes, delivering high-quality images to clients.",
-    },
-    {
-      role: "Web Developer",
-      company: "Creative Agency LLC",
-      duration: "Aug 2018 - Dec 2020",
-      description: "Developed and maintained client websites, focusing on responsive design and user experience.",
-    },
+    // Anda bisa menambahkan pengalaman lain di sini jika ada
+    // {
+    //   role: "Freelance Photographer",
+    //   company: "Self-Employed",
+    //   duration: "Jun 2018 - Present",
+    //   description: "Capturing portraits, events, and landscapes, delivering high-quality images to clients.",
+    // },
   ] as ExperienceItem[],
 };
 
