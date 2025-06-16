@@ -1,13 +1,13 @@
 
 import type { NavLink, Project, Photo, Skill, ExperienceItem, FooterLinkItem, SocialLink, AISuggestion } from './types';
-import { Github, Linkedin, Twitter, Instagram, Code, Camera, Briefcase, GraduationCap, Lightbulb, Bot, BarChart2, PenTool, WandSparkles } from 'lucide-react'; // Added WandSparkles for Photo Editor
+import { Github, Linkedin, Twitter, Instagram, Code, Camera, Briefcase, GraduationCap, Lightbulb, Bot, BarChart2, PenTool, WandSparkles, Film, Image as ImageIcon, Palette } from 'lucide-react'; // Added WandSparkles for Photo Editor, Film for Capcut, ImageIcon for Lightroom, Palette for Canva
 
 export const siteConfig = {
-  name: "jasonn.zip", 
-  jobTitle: "Digital Craftsman & Creative Mind", 
-  email: "jason@weplystudio.my.id", 
-  phone: "+62 858-6805-5463", 
-  location: "Tanjung Pinang, Kepulauan Riau", 
+  name: "jasonn.zip",
+  jobTitle: "Digital Craftsman & Creative Mind",
+  email: "jason@weplystudio.my.id",
+  phone: "+62 858-6805-5463",
+  location: "Tanjung Pinang, Kepulauan Riau",
   socials: [
     { name: "GitHub", url: "https://github.com/", icon: Github, handle: "@yourgithub" },
     { name: "LinkedIn", url: "https://linkedin.com/in/", icon: Linkedin, handle: "yourlinkedin" },
@@ -28,21 +28,24 @@ export const navLinks: NavLink[] = [
 ];
 
 export const aboutData = {
-  bio: `Hello! I'm ${siteConfig.name.split('.')[0]}, a passionate ${siteConfig.jobTitle} based in ${siteConfig.location}. 
+  bio: `Hello! I'm ${siteConfig.name.split('.')[0]}, a passionate ${siteConfig.jobTitle} based in ${siteConfig.location}.
   I thrive on creating beautiful, functional, and user-centered digital experiences.
   My journey in tech started with a curiosity for how things work, which blossomed into a career where I can build and innovate.
-  
-  When I'm not coding or designing, I love exploring the world through my camera lens, capturing moments and stories. 
+
+  When I'm not coding or designing, I love exploring the world through my camera lens, capturing moments and stories.
   This portfolio is a glimpse into my world – a blend of technology and artistry. Let's create something amazing together!`,
   skills: [
+    { name: "JavaScript", icon: Code, level: 90 },
     { name: "React", icon: Code, level: 90 },
     { name: "Next.js", icon: Code, level: 85 },
-    { name: "TypeScript", icon: Code, level: 90 },
-    { name: "Node.js", icon: Code, level: 75 },
-    { name: "UI/UX Design", icon: PenTool, level: 80 },
-    { name: "Photography", icon: Camera, level: 95 },
-    { name: "Genkit AI", icon: Bot, level: 70 },
+    { name: "Nuxt.js", icon: Code, level: 80 },
+    { name: "Vue.js", icon: Code, level: 80 },
+    { name: "PHP", icon: Code, level: 75 },
     { name: "Tailwind CSS", icon: Code, level: 95 },
+    { name: "Bootstrap", icon: Code, level: 80 },
+    { name: "Capcut", icon: Film, level: 85 },
+    { name: "Lightroom", icon: ImageIcon, level: 90 },
+    { name: "Canva", icon: Palette, level: 85 },
   ] as Skill[],
   experience: [
     {
@@ -74,8 +77,8 @@ export const projectsData: Project[] = [
     imageUrl: "https://placehold.co/600x400.png",
     imageHint: "e-commerce online store",
     tags: ["Next.js", "Stripe", "Tailwind CSS", "TypeScript"],
-    projectUrl: "#", 
-    repoUrl: "#",    
+    projectUrl: "#",
+    repoUrl: "#",
   },
   {
     id: "2",
@@ -102,7 +105,7 @@ export const photosData: Photo[] = [
     id: "p1",
     title: "Mountain Sunrise",
     description: "Early morning light hitting the peaks.",
-    imageUrl: "https://placehold.co/400x533.png", 
+    imageUrl: "https://placehold.co/400x533.png",
     imageHint: "mountain landscape sunrise",
     category: "Landscape",
   },
@@ -150,8 +153,8 @@ export const footerLinks = {
     { href: "#photo-editor", label: "AI Photo Editor" },
   ],
   legal: [
-     { href: "#", label: "Privacy Policy" }, 
-     { href: "#", label: "Terms of Service" }, 
+     { href: "#", label: "Privacy Policy" },
+     { href: "#", label: "Terms of Service" },
   ]
 };
 
@@ -166,4 +169,3 @@ export const initialFilters: AISuggestion['filters'] = {
   invert: 0,
   blur: 0,
 };
-
