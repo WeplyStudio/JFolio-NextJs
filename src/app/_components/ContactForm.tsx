@@ -15,9 +15,9 @@ import { submitContactForm, type ContactFormState } from "@/actions/contact";
 import { Send, Loader2 } from "lucide-react";
 
 const contactFormSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+  name: z.string().min(2, { message: "Nama minimal 2 karakter." }),
+  email: z.string().email({ message: "Harap masukkan alamat email yang valid." }),
+  message: z.string().min(10, { message: "Pesan minimal 10 karakter." }),
 });
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
@@ -29,12 +29,12 @@ function SubmitButton() {
       {pending ? (
         <>
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Sending...
+          Mengirim...
         </>
       ) : (
         <>
           <Send className="mr-2 h-4 w-4" />
-          Send Message
+          Kirim Pesan
         </>
       )}
     </Button>
@@ -54,15 +54,15 @@ export function ContactForm() {
     formState: { errors },
     reset,
   } = useForm<ContactFormData>({
-    resolver: zodResolver(contactFormSchema),
+    resolver: zodResolver(contactFormSchema), // This will now use the Indonesian error messages
   });
 
   useEffect(() => {
     if (state.message) {
       toast({
-        title: state.success ? "Success!" : "Error",
+        title: state.success ? "Sukses!" : "Kesalahan",
         description: state.message,
-        variant: state.success ? "default" : "destructive", // 'default' will use primary color styling for success
+        variant: state.success ? "default" : "destructive",
       });
       if (state.success) {
         reset(); 
@@ -81,34 +81,34 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} id="contact-form" className="space-y-6">
       <div>
-        <Label htmlFor="name" className="text-foreground/80">Full Name</Label>
+        <Label htmlFor="name" className="text-foreground/80">Nama Lengkap</Label>
         <Input
           id="name"
           {...register("name")}
-          placeholder="Your Name"
+          placeholder="Nama Anda"
           className="mt-1 bg-background border-border focus:border-primary focus:ring-primary"
           aria-invalid={errors.name ? "true" : "false"}
         />
         {errors.name && <p className="mt-1 text-sm text-destructive">{errors.name.message}</p>}
       </div>
       <div>
-        <Label htmlFor="email" className="text-foreground/80">Email Address</Label>
+        <Label htmlFor="email" className="text-foreground/80">Alamat Email</Label>
         <Input
           id="email"
           type="email"
           {...register("email")}
-          placeholder="your.email@example.com"
+          placeholder="email.anda@contoh.com"
           className="mt-1 bg-background border-border focus:border-primary focus:ring-primary"
           aria-invalid={errors.email ? "true" : "false"}
         />
         {errors.email && <p className="mt-1 text-sm text-destructive">{errors.email.message}</p>}
       </div>
       <div>
-        <Label htmlFor="message" className="text-foreground/80">Message</Label>
+        <Label htmlFor="message" className="text-foreground/80">Pesan</Label>
         <Textarea
           id="message"
           {...register("message")}
-          placeholder="Your message..."
+          placeholder="Pesan Anda..."
           rows={5}
           className="mt-1 bg-background border-border focus:border-primary focus:ring-primary"
           aria-invalid={errors.message ? "true" : "false"}

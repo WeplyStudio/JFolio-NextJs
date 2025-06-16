@@ -1,11 +1,12 @@
+
 "use server";
 
 import { z } from "zod";
 
 const contactFormSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Invalid email address." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+  name: z.string().min(2, { message: "Nama minimal 2 karakter." }),
+  email: z.string().email({ message: "Alamat email tidak valid." }),
+  message: z.string().min(10, { message: "Pesan minimal 10 karakter." }),
 });
 
 export type ContactFormState = {
@@ -24,14 +25,14 @@ export async function submitContactForm(
 
   if (!parsed.success) {
     return {
-      message: "Invalid form data",
+      message: "Data formulir tidak valid",
       issues: parsed.error.issues.map((issue) => issue.message),
       success: false,
     };
   }
 
   // Simulate sending an email or saving to a database
-  console.log("Contact form submitted:", parsed.data);
+  console.log("Formulir kontak dikirim:", parsed.data);
 
   // In a real application, you would handle email sending here.
   // For example, using a service like SendGrid, Resend, or Nodemailer.
@@ -42,13 +43,13 @@ export async function submitContactForm(
   // Simulate potential error
   // if (Math.random() > 0.5) {
   //   return {
-  //     message: "Failed to send message. Please try again later.",
+  //     message: "Gagal mengirim pesan. Silakan coba lagi nanti.",
   //     success: false,
   //   };
   // }
 
   return {
-    message: "Thank you for your message! I'll get back to you soon.",
+    message: "Terima kasih atas pesan Anda! Saya akan segera menghubungi Anda.",
     success: true,
   };
 }

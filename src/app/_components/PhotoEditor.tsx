@@ -46,7 +46,7 @@ export function PhotoEditor() {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       if (file.size > 5 * 1024 * 1024) { // 5MB limit
-        toast({ title: "Image too large", description: "Please upload an image under 5MB.", variant: "destructive" });
+        toast({ title: "Gambar terlalu besar", description: "Silakan unggah gambar di bawah 5MB.", variant: "destructive" });
         return;
       }
       const reader = new FileReader();
@@ -89,7 +89,7 @@ export function PhotoEditor() {
 
   const fetchAISuggestions = async () => {
     if (!uploadedImage) {
-      toast({ title: "No image uploaded", description: "Please upload an image first.", variant: "destructive" });
+      toast({ title: "Tidak ada gambar diunggah", description: "Silakan unggah gambar terlebih dahulu.", variant: "destructive" });
       return;
     }
     setIsLoadingAI(true);
@@ -99,14 +99,14 @@ export function PhotoEditor() {
       const result: ColorGradingSuggesterOutput = await colorGradingSuggester(input);
       if (result.suggestions && result.suggestions.length > 0) {
         setAiSuggestions(result.suggestions);
-        toast({ title: "AI Suggestions Ready!", description: "Choose a style or fine-tune manually." });
+        toast({ title: "Saran AI Siap!", description: "Pilih gaya atau sesuaikan manual." });
       } else {
-        toast({ title: "No AI Suggestions", description: "Could not generate suggestions. Try manual editing.", variant: "default" });
+        toast({ title: "Tidak Ada Saran AI", description: "Tidak dapat menghasilkan saran. Coba edit manual.", variant: "default" });
         setAiSuggestions([]);
       }
     } catch (error) {
       console.error("Error fetching AI suggestions:", error);
-      toast({ title: "AI Error", description: "Failed to get AI suggestions.", variant: "destructive" });
+      toast({ title: "Kesalahan AI", description: "Gagal mendapatkan saran AI.", variant: "destructive" });
       setAiSuggestions([]);
     } finally {
       setIsLoadingAI(false);
@@ -124,13 +124,13 @@ export function PhotoEditor() {
     }
     setFilters(newFilters);
     setActiveSuggestionName(suggestion.name);
-    toast({ title: `Applied: ${suggestion.name}`, description: suggestion.description });
+    toast({ title: `Diterapkan: ${suggestion.name}`, description: suggestion.description });
   };
 
   const resetFilters = () => {
     setFilters(initialFilters);
     setActiveSuggestionName(null);
-    toast({ title: "Filters Reset", description: "Image restored to original." });
+    toast({ title: "Filter Diatur Ulang", description: "Gambar dikembalikan ke asli." });
   };
 
   const downloadImage = () => {
@@ -153,10 +153,10 @@ export function PhotoEditor() {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      toast({ title: "Image Downloaded", description: "Check your downloads folder." });
+      toast({ title: "Gambar Diunduh", description: "Periksa folder unduhan Anda." });
     };
     img.onerror = () => {
-        toast({ title: "Download Error", description: "Could not load image for download.", variant: "destructive"});
+        toast({ title: "Kesalahan Unduh", description: "Tidak dapat memuat gambar untuk diunduh.", variant: "destructive"});
     }
     img.src = uploadedImage;
   };
@@ -165,10 +165,10 @@ export function PhotoEditor() {
     <Card className="shadow-xl border-border/60 rounded-xl bg-card overflow-hidden">
       <CardHeader>
         <CardTitle className="flex items-center text-2xl text-primary font-headline">
-          <Palette className="mr-2 h-6 w-6" /> AI Photo Editor
+          <Palette className="mr-2 h-6 w-6" /> Editor Foto AI
         </CardTitle>
         <CardDescription className="text-muted-foreground">
-          Upload an image, get AI color grading suggestions, or adjust manually.
+          Unggah gambar, dapatkan saran pewarnaan AI, atau sesuaikan secara manual.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -176,7 +176,7 @@ export function PhotoEditor() {
           {/* Left Column: Upload & Image Preview */}
           <div className="space-y-4">
             <Card className="bg-background/50 p-4 border-dashed border-primary/50">
-              <Label htmlFor="imageUpload" className="text-foreground/80 mb-2 block text-sm font-medium">Upload Your Photo</Label>
+              <Label htmlFor="imageUpload" className="text-foreground/80 mb-2 block text-sm font-medium">Unggah Foto Anda</Label>
               <Input
                 id="imageUpload"
                 type="file"
@@ -184,7 +184,7 @@ export function PhotoEditor() {
                 onChange={handleImageUpload}
                 className="block w-full text-sm text-foreground file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
               />
-              <p className="text-xs text-muted-foreground mt-1">Max 5MB. JPG, PNG, WebP.</p>
+              <p className="text-xs text-muted-foreground mt-1">Maks 5MB. JPG, PNG, WebP.</p>
             </Card>
 
             {uploadedImage && (
@@ -192,7 +192,7 @@ export function PhotoEditor() {
                 <Image
                   ref={imageRef}
                   src={uploadedImage}
-                  alt="Uploaded preview"
+                  alt="Pratinjau unggahan"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   style={{ ...cssFilterStyle, objectFit: 'contain' }}
@@ -203,7 +203,7 @@ export function PhotoEditor() {
              {!uploadedImage && (
                 <div className="relative w-full aspect-video bg-muted/30 rounded-md overflow-hidden border border-border/30 shadow-inner flex flex-col items-center justify-center text-muted-foreground">
                     <UploadCloud className="h-16 w-16 mb-2 opacity-50" />
-                    <p>Your image will appear here</p>
+                    <p>Gambar Anda akan muncul di sini</p>
                 </div>
             )}
           </div>
@@ -213,13 +213,13 @@ export function PhotoEditor() {
             <Card className="bg-background/50">
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg flex items-center text-primary/90">
-                  <Wand2 className="mr-2 h-5 w-5" /> AI Suggestions
+                  <Wand2 className="mr-2 h-5 w-5" /> Saran AI
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <Button onClick={fetchAISuggestions} disabled={!uploadedImage || isLoadingAI} className="w-full">
                   {isLoadingAI ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Wand2 className="mr-2 h-4 w-4" />}
-                  {isLoadingAI ? "Thinking..." : "Get AI Color Styles"}
+                  {isLoadingAI ? "Memproses..." : "Dapatkan Gaya Warna AI"}
                 </Button>
                 {aiSuggestions.length > 0 && (
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-2">
@@ -241,7 +241,7 @@ export function PhotoEditor() {
                   </div>
                 )}
                 {!isLoadingAI && uploadedImage && aiSuggestions.length === 0 && (
-                    <p className="text-xs text-muted-foreground text-center pt-2">Click "Get AI Color Styles" to see suggestions.</p>
+                    <p className="text-xs text-muted-foreground text-center pt-2">Klik "Dapatkan Gaya Warna AI" untuk melihat saran.</p>
                 )}
               </CardContent>
             </Card>
@@ -249,7 +249,7 @@ export function PhotoEditor() {
             <Card className="bg-background/50">
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg flex items-center text-primary/90">
-                  <Palette className="mr-2 h-5 w-5" /> Manual Adjustments
+                  <Palette className="mr-2 h-5 w-5" /> Penyesuaian Manual
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 pt-2">
@@ -281,10 +281,10 @@ export function PhotoEditor() {
       </CardContent>
       <CardFooter className="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 pt-6 border-t border-border/60 bg-muted/30">
         <Button onClick={resetFilters} variant="outline" disabled={!uploadedImage}>
-          <RotateCcw className="mr-2 h-4 w-4" /> Reset
+          <RotateCcw className="mr-2 h-4 w-4" /> Atur Ulang
         </Button>
         <Button onClick={downloadImage} disabled={!uploadedImage}>
-          <Download className="mr-2 h-4 w-4" /> Download Image
+          <Download className="mr-2 h-4 w-4" /> Unduh Gambar
         </Button>
       </CardFooter>
     </Card>

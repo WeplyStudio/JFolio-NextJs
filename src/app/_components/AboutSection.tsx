@@ -10,9 +10,9 @@ export function AboutSection() {
   return (
     <SectionWrapper id="about" hasBackgroundPattern>
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground font-headline">About Me</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground font-headline">Tentang Saya</h2>
         <p className="text-lg text-muted-foreground mt-2 max-w-2xl mx-auto">
-          A glimpse into my journey, skills, and passions.
+          Sekilas tentang perjalanan, keahlian, dan minat saya.
         </p>
       </div>
 
@@ -21,7 +21,7 @@ export function AboutSection() {
           <Card className="shadow-lg border-border/60 rounded-xl">
             <CardHeader>
               <CardTitle className="flex items-center text-2xl text-primary font-headline">
-                <Lightbulb className="mr-2 h-6 w-6" /> My Story
+                <Lightbulb className="mr-2 h-6 w-6" /> Kisah Saya
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -34,7 +34,7 @@ export function AboutSection() {
           <Card className="shadow-lg border-border/60 rounded-xl">
             <CardHeader>
               <CardTitle className="flex items-center text-2xl text-primary font-headline">
-                <Zap className="mr-2 h-6 w-6" /> Skills
+                <Zap className="mr-2 h-6 w-6" /> Keahlian
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -49,7 +49,7 @@ export function AboutSection() {
                       {skill.level && <span className="text-xs text-muted-foreground">{skill.level}%</span>}
                     </div>
                     {skill.level ? (
-                      <Progress value={skill.level} aria-label={`${skill.name} proficiency ${skill.level}%`} className="h-2" />
+                      <Progress value={skill.level} aria-label={`${skill.name} kemahiran ${skill.level}%`} className="h-2" />
                     ) : (
                       <Badge variant="secondary" className="px-3 py-1 text-xs bg-primary/10 text-primary-foreground border-primary/20">
                         {skill.name}
@@ -66,7 +66,7 @@ export function AboutSection() {
           <Card className="shadow-lg border-border/60 rounded-xl">
             <CardHeader>
               <CardTitle className="flex items-center text-2xl text-primary font-headline">
-                <Briefcase className="mr-2 h-6 w-6" /> Experience
+                <Briefcase className="mr-2 h-6 w-6" /> Pengalaman
               </CardTitle>
             </CardHeader>
             <CardContent>

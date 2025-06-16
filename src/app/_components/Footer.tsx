@@ -57,10 +57,10 @@ export function Footer() {
       <footer className="bg-card border-t border-border/60 pt-8 text-sm text-muted-foreground">
         <div className="container mx-auto px-4 md:px-6">
           <div className="md:hidden">
-            <FooterAccordionItem title="Explore" links={footerLinks.explore} />
-            <FooterAccordionItem title="Connect" links={footerLinks.connect} />
+            <FooterAccordionItem title="Jelajahi" links={footerLinks.explore} />
+            <FooterAccordionItem title="Terhubung" links={footerLinks.connect} />
             {footerLinks.tools && footerLinks.tools.length > 0 && (
-                <FooterAccordionItem title="Tools & Resources" links={footerLinks.tools} />
+                <FooterAccordionItem title="Alat & Sumber Daya" links={footerLinks.tools} />
             )}
           </div>
 
@@ -70,7 +70,7 @@ export function Footer() {
                     {styledName}
                 </Link>
                 <p className="text-xs max-w-xs">
-                    {siteConfig.jobTitle}. Crafting digital experiences from {siteConfig.location}.
+                    {siteConfig.jobTitle}. Menciptakan pengalaman digital dari {siteConfig.location}.
                 </p>
                  <div className="flex space-x-3 mt-4">
                     {siteConfig.socials.map((social) => (
@@ -88,7 +88,7 @@ export function Footer() {
                   </div>
             </div>
             <div>
-              <h3 className="font-medium text-foreground mb-4">Explore</h3>
+              <h3 className="font-medium text-foreground mb-4">Jelajahi</h3>
               <ul className="space-y-2.5">
                 {footerLinks.explore.map(link => (
                   <li key={link.label}>
@@ -100,7 +100,7 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="font-medium text-foreground mb-4">Connect</h3>
+              <h3 className="font-medium text-foreground mb-4">Terhubung</h3>
               <ul className="space-y-2.5">
                 {footerLinks.connect.map(link => (
                   <li key={link.label}>
@@ -118,7 +118,7 @@ export function Footer() {
             </div>
              {footerLinks.tools && footerLinks.tools.length > 0 && (
                 <div>
-                    <h3 className="font-medium text-foreground mb-4">Tools & Resources</h3>
+                    <h3 className="font-medium text-foreground mb-4">Alat & Sumber Daya</h3>
                     <ul className="space-y-2.5">
                         {footerLinks.tools.map(link => (
                         <li key={link.label}>
@@ -135,7 +135,7 @@ export function Footer() {
           <div className="py-6 text-xs">
             <div className="flex flex-col md:flex-row md:justify-between items-center border-t border-border/70 pt-6">
               <p className="text-center md:text-left mb-4 md:mb-0">
-                © {currentYear} {siteConfig.name}. All rights reserved.
+                © {currentYear} {siteConfig.name}. Hak cipta dilindungi.
               </p>
               <div className="flex flex-wrap justify-center md:justify-end gap-x-4 gap-y-2">
                 {footerLinks.legal.map(link => (

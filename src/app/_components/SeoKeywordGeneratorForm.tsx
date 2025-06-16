@@ -23,8 +23,8 @@ export function SeoKeywordGeneratorForm() {
     const trimmedContent = portfolioContent.trim();
     if (trimmedContent.length < 50) {
       toast({
-        title: "Input Too Short",
-        description: "Please enter at least 50 characters about your portfolio.",
+        title: "Input Terlalu Pendek",
+        description: "Harap masukkan setidaknya 50 karakter tentang portofolio Anda.",
         variant: "destructive",
       });
       return;
@@ -37,18 +37,18 @@ export function SeoKeywordGeneratorForm() {
       const result: SeoKeywordGeneratorOutput = await generateSeoKeywords(input);
       setKeywords(result.keywords.split(',').map(k => k.trim()).filter(k => k));
       toast({
-        title: "Keywords Generated!",
-        description: "Successfully generated SEO keywords.",
+        title: "Kata Kunci Dihasilkan!",
+        description: "Berhasil menghasilkan kata kunci SEO.",
         variant: "default",
       });
     } catch (error) {
       console.error("Error generating SEO keywords:", error);
-      let errorMessage = "Failed to generate SEO keywords. Please try again.";
+      let errorMessage = "Gagal menghasilkan kata kunci SEO. Silakan coba lagi.";
       if (error instanceof Error && error.message.includes("Invalid input")) {
         errorMessage = error.message; // Show specific Zod error message if available
       }
       toast({
-        title: "Error",
+        title: "Kesalahan",
         description: errorMessage,
         variant: "destructive",
       });
@@ -62,7 +62,7 @@ export function SeoKeywordGeneratorForm() {
       navigator.clipboard.writeText(keywords.join(', '));
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-      toast({ title: "Copied to clipboard!", variant: "default" });
+      toast({ title: "Disalin ke clipboard!", variant: "default" });
     }
   };
 
@@ -70,21 +70,21 @@ export function SeoKeywordGeneratorForm() {
     <Card className="shadow-xl border-border/60 rounded-xl bg-card">
       <CardHeader>
         <CardTitle className="flex items-center text-2xl text-primary font-headline">
-          <Wand2 className="mr-2 h-6 w-6" /> AI SEO Keyword Generator
+          <Wand2 className="mr-2 h-6 w-6" /> Generator Kata Kunci SEO AI
         </CardTitle>
         <CardDescription className="text-muted-foreground">
-          Enter content about your portfolio (e.g., skills, project descriptions, about me - minimum 50 characters) to generate relevant SEO keywords.
+          Masukkan konten tentang portofolio Anda (misalnya, keahlian, deskripsi proyek, tentang saya - minimal 50 karakter) untuk menghasilkan kata kunci SEO yang relevan.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <Label htmlFor="portfolioContent" className="text-foreground/80">Your Content (min. 50 characters)</Label>
+            <Label htmlFor="portfolioContent" className="text-foreground/80">Konten Anda (min. 50 karakter)</Label>
             <Textarea
               id="portfolioContent"
               value={portfolioContent}
               onChange={(e) => setPortfolioContent(e.target.value)}
-              placeholder="Describe your skills, projects, services, and what makes your portfolio unique..."
+              placeholder="Jelaskan keahlian, proyek, layanan Anda, dan apa yang membuat portofolio Anda unik..."
               rows={8}
               className="mt-1 bg-background border-border focus:border-primary focus:ring-primary"
               disabled={isLoading}
@@ -92,7 +92,7 @@ export function SeoKeywordGeneratorForm() {
             />
             {portfolioContent.trim().length > 0 && portfolioContent.trim().length < 50 && (
                  <p id="content-error" className="mt-1 text-sm text-destructive">
-                    Content must be at least 50 characters. Currently: {portfolioContent.trim().length}
+                    Konten minimal 50 karakter. Saat ini: {portfolioContent.trim().length}
                 </p>
             )}
           </div>
@@ -100,12 +100,12 @@ export function SeoKeywordGeneratorForm() {
             {isLoading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Generating...
+                Menghasilkan...
               </>
             ) : (
               <>
                 <Wand2 className="mr-2 h-4 w-4" />
-                Generate Keywords
+                Hasilkan Kata Kunci
               </>
             )}
           </Button>
@@ -114,10 +114,10 @@ export function SeoKeywordGeneratorForm() {
       {keywords.length > 0 && (
         <CardFooter className="flex-col items-start space-y-4 pt-6 border-t border-border/60">
             <div className="flex justify-between items-center w-full">
-              <h4 className="text-lg font-semibold text-foreground">Generated Keywords:</h4>
+              <h4 className="text-lg font-semibold text-foreground">Kata Kunci yang Dihasilkan:</h4>
               <Button onClick={handleCopy} variant="ghost" size="sm" className="text-primary hover:text-primary/80 hover:bg-primary/10">
                 {copied ? <Check className="h-4 w-4 mr-2 text-green-500" /> : <Copy className="h-4 w-4 mr-2" />}
-                {copied ? 'Copied!' : 'Copy'}
+                {copied ? 'Disalin!' : 'Salin'}
               </Button>
             </div>
             <div className="flex flex-wrap gap-2">

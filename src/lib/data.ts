@@ -4,7 +4,7 @@ import { Github, Linkedin, Twitter, Instagram, Code, Camera, Briefcase, Graduati
 
 export const siteConfig = {
   name: "jasonn.zip",
-  jobTitle: "Digital Craftsman & Creative Mind",
+  jobTitle: "Pengrajin Digital & Pikiran Kreatif",
   email: "jason@weplystudio.my.id",
   phone: "+62 858-6805-5463",
   location: "Tanjung Pinang, Kepulauan Riau",
@@ -14,26 +14,26 @@ export const siteConfig = {
     { name: "Twitter", url: "https://twitter.com/", icon: Twitter, handle: "@yourtwitter" },
     { name: "Instagram", url: "https://instagram.com/", icon: Instagram, handle: "@yourinstagram" },
   ] as SocialLink[],
-  keywords: ["portfolio", "developer", "photographer", "web design", "react", "nextjs", "ai photo editor", "services", "web development", "ai solutions"],
+  keywords: ["portofolio", "developer", "fotografer", "desain web", "react", "nextjs", "editor foto ai", "layanan", "pengembangan web", "solusi ai"],
 };
 
 export const navLinks: NavLink[] = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services", icon: Layers },
-  { href: "#photo-editor", label: "AI Photo Editor", icon: WandSparkles },
-  { href: "#photography", label: "Photography" },
-  { href: "#seo-tool", label: "SEO Tool" },
-  { href: "#contact", label: "Contact" },
+  { href: "#home", label: "Beranda" },
+  { href: "#about", label: "Tentang Saya" },
+  { href: "#services", label: "Layanan", icon: Layers },
+  { href: "#photo-editor", label: "Editor Foto AI", icon: WandSparkles },
+  { href: "#photography", label: "Fotografi" },
+  { href: "#seo-tool", label: "Alat SEO" },
+  { href: "#contact", label: "Kontak" },
 ];
 
 export const aboutData = {
-  bio: `Hello! I'm ${siteConfig.name.split('.')[0]}, a passionate ${siteConfig.jobTitle} based in ${siteConfig.location}.
-  I thrive on creating beautiful, functional, and user-centered digital experiences.
-  My journey in tech started with a curiosity for how things work, which blossomed into a career where I can build and innovate.
+  bio: `Halo! Saya ${siteConfig.name.split('.')[0]}, seorang ${siteConfig.jobTitle} yang bersemangat dari ${siteConfig.location}.
+  Saya berkembang dengan menciptakan pengalaman digital yang indah, fungsional, dan berpusat pada pengguna.
+  Perjalanan saya di bidang teknologi dimulai dengan rasa ingin tahu tentang cara kerja berbagai hal, yang kemudian berkembang menjadi karier di mana saya dapat membangun dan berinovasi.
 
-  When I'm not coding or designing, I love exploring the world through my camera lens, capturing moments and stories.
-  This portfolio is a glimpse into my world – a blend of technology and artistry. Let's create something amazing together!`,
+  Ketika saya tidak sedang membuat kode atau mendesain, saya suka menjelajahi dunia melalui lensa kamera saya, mengabadikan momen dan cerita.
+  Portofolio ini adalah sekilas tentang dunia saya – perpaduan antara teknologi dan seni. Mari ciptakan sesuatu yang luar biasa bersama!`,
   skills: [
     { name: "JavaScript", icon: Code, level: 90 },
     { name: "React", icon: Code, level: 90 },
@@ -49,7 +49,7 @@ export const aboutData = {
   ] as Skill[],
   experience: [
     {
-      role: "Founder",
+      role: "Pendiri",
       company: "Weply Studio (sekarang menjadi Zylo)",
       duration: "2021 - Sekarang",
       description: "Memimpin visi, strategi, dan pengembangan produk di Weply Studio, yang kini telah bertransformasi menjadi Zylo. Berfokus pada solusi digital inovatif untuk klien dan pasar.",
@@ -60,31 +60,31 @@ export const aboutData = {
 export const whatIDoData: ServiceItem[] = [
   {
     id: "web-dev",
-    title: "Web Development",
-    description: "Crafting responsive, high-performance websites and web applications tailored to your needs using modern technologies.",
+    title: "Pengembangan Web",
+    description: "Menciptakan situs web dan aplikasi web yang responsif dan berkinerja tinggi yang disesuaikan dengan kebutuhan Anda menggunakan teknologi modern.",
     icon: Code,
     tags: ["Next.js", "React", "Vue.js", "Node.js", "Tailwind CSS", "TypeScript"]
   },
   {
     id: "ai-solutions",
-    title: "AI Integration",
-    description: "Leveraging artificial intelligence to build smart solutions, automate processes, and provide insightful data analysis.",
+    title: "Integrasi AI",
+    description: "Memanfaatkan kecerdasan buatan untuk membangun solusi cerdas, mengotomatiskan proses, dan menyediakan analisis data yang mendalam.",
     icon: Bot,
     tags: ["Genkit", "Machine Learning", "NLP", "Chatbots"]
   },
   {
     id: "photography",
-    title: "Photography Services",
-    description: "Capturing moments with creativity and precision, offering professional photography for various needs.",
+    title: "Jasa Fotografi",
+    description: "Mengabadikan momen dengan kreativitas dan presisi, menawarkan fotografi profesional untuk berbagai kebutuhan.",
     icon: Camera,
-    tags: ["Portrait", "Product", "Event", "Landscape"]
+    tags: ["Potret", "Produk", "Acara", "Lanskap"]
   },
   {
     id: "ui-ux",
-    title: "UI/UX Design",
-    description: "Designing intuitive and engaging user interfaces that provide an optimal user experience across all devices.",
-    icon: Paintbrush, // Corrected casing here
-    tags: ["Figma", "Canva", "User Research", "Prototyping"]
+    title: "Desain UI/UX",
+    description: "Merancang antarmuka pengguna yang intuitif dan menarik yang memberikan pengalaman pengguna yang optimal di semua perangkat.",
+    icon: Paintbrush,
+    tags: ["Figma", "Canva", "Riset Pengguna", "Prototyping"]
   },
 ];
 
@@ -92,58 +92,58 @@ export const whatIDoData: ServiceItem[] = [
 export const photosData: Photo[] = [
   {
     id: "p1",
-    title: "Mountain Sunrise",
-    description: "Early morning light hitting the peaks.",
+    title: "Matahari Terbit di Gunung",
+    description: "Cahaya pagi hari menyinari puncak-puncak.",
     imageUrl: "https://placehold.co/400x533.png",
     imageHint: "mountain landscape sunrise",
-    category: "Landscape",
+    category: "Lanskap",
   },
   {
     id: "p2",
-    title: "Urban Reflections",
-    description: "City lights reflected after a rainstorm.",
+    title: "Refleksi Perkotaan",
+    description: "Lampu kota terpantul setelah badai hujan.",
     imageUrl: "https://placehold.co/400x533.png",
     imageHint: "cityscape night rain",
-    category: "Urban",
+    category: "Perkotaan",
   },
   {
     id: "p3",
-    title: "Forest Path",
-    description: "A serene path winding through a lush forest.",
+    title: "Jalur Hutan",
+    description: "Jalur tenang berkelok-kelok melalui hutan lebat.",
     imageUrl: "https://placehold.co/400x533.png",
     imageHint: "forest path nature",
-    category: "Nature",
+    category: "Alam",
   },
   {
     id: "p4",
-    title: "Coastal Waves",
-    description: "Powerful waves crashing against the shore.",
+    title: "Ombak Pesisir",
+    description: "Ombak kuat menghantam pantai.",
     imageUrl: "https://placehold.co/400x533.png",
     imageHint: "ocean waves coast",
-    category: "Seascape",
+    category: "Pemandangan Laut",
   },
 ];
 
 export const footerLinks = {
   explore: [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About Me" },
-    { href: "#services", label: "Services"},
-    { href: "#photo-editor", label: "AI Photo Editor" },
-    { href: "#photography", label: "Gallery" },
-    { href: "#seo-tool", label: "SEO Tool"},
+    { href: "#home", label: "Beranda" },
+    { href: "#about", label: "Tentang Saya" },
+    { href: "#services", label: "Layanan"},
+    { href: "#photo-editor", label: "Editor Foto AI" },
+    { href: "#photography", label: "Galeri" },
+    { href: "#seo-tool", label: "Alat SEO"},
   ],
   connect: [
-    { href: "#contact", label: "Contact Me" },
+    { href: "#contact", label: "Hubungi Saya" },
     ...siteConfig.socials.map(s => ({ href: s.url, label: s.name, external: true, className: `link-${s.name.toLowerCase()}` }))
   ],
   tools: [
-    { href: "#seo-tool", label: "SEO Keyword Tool" },
-    { href: "#photo-editor", label: "AI Photo Editor" },
+    { href: "#seo-tool", label: "Alat Kata Kunci SEO" },
+    { href: "#photo-editor", label: "Editor Foto AI" },
   ],
   legal: [
-     { href: "#", label: "Privacy Policy" },
-     { href: "#", label: "Terms of Service" },
+     { href: "#", label: "Kebijakan Privasi" },
+     { href: "#", label: "Ketentuan Layanan" },
   ]
 };
 

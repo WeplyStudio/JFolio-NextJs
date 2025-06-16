@@ -45,7 +45,7 @@ export function Header() {
             <Button asChild className="hidden md:inline-flex bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-medium">
               <Link href="#contact">
                 <MessageSquare className="h-4 w-4 mr-2" />
-                Contact Me
+                Hubungi Saya
               </Link>
             </Button>
 
@@ -54,7 +54,7 @@ export function Header() {
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary">
                     <MenuIcon className="h-6 w-6" />
-                    <span className="sr-only">Open menu</span>
+                    <span className="sr-only">Buka menu</span>
                   </Button>
                 </SheetTrigger>
                 <SheetContent side="left" className="w-[300px] sm:w-[340px] bg-card p-0">
@@ -89,7 +89,7 @@ export function Header() {
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                             <MessageSquare className="h-4 w-4 mr-2" />
-                            Contact Me
+                            Hubungi Saya
                         </Link>
                     </Button>
                   </nav>

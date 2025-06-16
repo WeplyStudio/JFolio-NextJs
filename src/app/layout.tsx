@@ -1,11 +1,12 @@
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"; // Re-added for portfolio contact form
 
 export const metadata: Metadata = {
-  title: 'My Portfolio | Developer & Creator', // Updated for portfolio
-  description: 'Welcome to my personal portfolio. Discover my projects, photography, and skills.', // Updated for portfolio
-  keywords: "portfolio, developer, designer, projects, photography, web development, nextjs, react",
+  title: 'Portofolio Saya | Developer & Kreator', // Updated for portfolio
+  description: 'Selamat datang di portofolio pribadi saya. Temukan proyek, fotografi, dan keahlian saya.', // Updated for portfolio
+  keywords: "portofolio, developer, fotografer, desain web, react, nextjs, editor foto ai, layanan, pengembangan web, solusi ai",
 };
 
 export default function RootLayout({
@@ -14,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="id" suppressHydrationWarning>
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

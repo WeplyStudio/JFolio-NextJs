@@ -10,10 +10,10 @@ export function WhatIDoSection() {
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold text-foreground font-headline flex items-center justify-center">
           <Layers className="mr-3 h-8 w-8 text-primary" /> {/* Changed icon */}
-          What I Do
+          Layanan Saya
         </h2>
         <p className="text-lg text-muted-foreground mt-2 max-w-xl mx-auto">
-          Offering a range of digital services to bring your ideas to life.
+          Menawarkan berbagai layanan digital untuk mewujudkan ide-ide Anda.
         </p>
       </div>
       {whatIDoData && whatIDoData.length > 0 ? (
@@ -23,7 +23,7 @@ export function WhatIDoSection() {
           ))}
         </div>
       ) : (
-        <p className="text-center text-muted-foreground">No services to display at the moment. Check back soon!</p>
+        <p className="text-center text-muted-foreground">Tidak ada layanan untuk ditampilkan saat ini. Silakan kembali lagi nanti!</p>
       )}
     </SectionWrapper>
   );
