@@ -3,7 +3,7 @@ import { Header } from './_components/Header';
 import { Footer } from './_components/Footer';
 import { HeroSection } from './_components/HeroSection';
 import { AboutSection } from './_components/AboutSection';
-import { TestimonialsSection } from './_components/TestimonialsSection';
+import { ProjectsSection } from './_components/ProjectsSection'; // Changed from TestimonialsSection
 import { PhotographySection } from './_components/PhotographySection';
 import { SeoToolSection } from './_components/SeoToolSection';
 import { ContactSection } from './_components/ContactSection';
@@ -16,7 +16,7 @@ export default function PortfolioPage() {
       <main className="flex-grow">
         <HeroSection />
         <AboutSection />
-        <TestimonialsSection />
+        <ProjectsSection /> {/* Changed from TestimonialsSection */}
         <PhotoEditorSection />
         <PhotographySection />
         <SeoToolSection />

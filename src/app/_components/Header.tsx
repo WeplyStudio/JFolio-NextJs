@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
-import { Menu as MenuIcon, MessageSquare } from 'lucide-react'; 
+import { Menu as MenuIcon, MessageSquare } from 'lucide-react';
 import { siteConfig, navLinks } from '@/lib/data';
 import type { NavLink as NavLinkType } from '@/lib/types';
 
@@ -25,8 +25,8 @@ export function Header() {
               {mainName}{extension && <span className="text-primary">{extension}</span>}
             </Link>
           </div>
-          
-          <nav className="hidden md:flex space-x-6 text-sm justify-center items-center"> {/* Reduced space-x-8 to space-x-6 */}
+
+          <nav className="hidden md:flex space-x-6 text-sm justify-center items-center">
             {navLinks.map((link: NavLinkType) => (
               <Link
                 key={link.label}
@@ -48,7 +48,7 @@ export function Header() {
                 Contact Me
               </Link>
             </Button>
-            
+
             <div className="md:hidden">
               <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                 <SheetTrigger asChild>
@@ -60,8 +60,8 @@ export function Header() {
                 <SheetContent side="left" className="w-[300px] sm:w-[340px] bg-card p-0">
                   <SheetHeader className="p-6 border-b border-border">
                     <SheetTitle>
-                      <Link 
-                        href="#home" 
+                      <Link
+                        href="#home"
                         className="text-foreground font-bold text-xl hover:opacity-80 transition-opacity"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
@@ -84,7 +84,7 @@ export function Header() {
                       </Link>
                     ))}
                      <Button asChild className="w-full mt-4 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-medium">
-                        <Link 
+                        <Link
                           href="#contact"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >

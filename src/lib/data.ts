@@ -1,6 +1,6 @@
 
-import type { NavLink, Photo, Skill, ExperienceItem, FooterLinkItem, SocialLink, AISuggestion, Testimonial } from './types';
-import { Github, Linkedin, Twitter, Instagram, Code, Camera, Briefcase, GraduationCap, Lightbulb, Bot, BarChart2, PenTool, WandSparkles, Film, Image as ImageIcon, Palette, MessageSquareText } from 'lucide-react';
+import type { NavLink, Photo, Skill, ExperienceItem, FooterLinkItem, SocialLink, AISuggestion, Project } from './types';
+import { Github, Linkedin, Twitter, Instagram, Code, Camera, Briefcase, GraduationCap, Lightbulb, Bot, BarChart2, PenTool, WandSparkles, Film, Image as ImageIcon, Palette, MessageSquareText, Rocket } from 'lucide-react';
 
 export const siteConfig = {
   name: "jasonn.zip",
@@ -20,7 +20,7 @@ export const siteConfig = {
 export const navLinks: NavLink[] = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
-  { href: "#testimonials", label: "Testimonials", icon: MessageSquareText },
+  { href: "#projects", label: "Projects", icon: Rocket },
   { href: "#photo-editor", label: "AI Photo Editor", icon: WandSparkles },
   { href: "#photography", label: "Photography" },
   { href: "#seo-tool", label: "SEO Tool" },
@@ -57,32 +57,40 @@ export const aboutData = {
   ] as ExperienceItem[],
 };
 
-export const testimonialsData: Testimonial[] = [
+export const projectsData: Project[] = [
   {
-    id: "testimonial-1",
-    name: "Klien A",
-    title: "CEO, Perusahaan X",
-    quote: "Bekerja dengan Jason sangat luar biasa. Profesionalismenya dan perhatian terhadap detail menghasilkan produk yang melebihi ekspektasi kami.",
-    avatarUrl: "https://placehold.co/100x100.png",
-    avatarHint: "klien portrait",
+    id: "project-1",
+    title: "E-commerce Platform",
+    description: "A full-featured e-commerce platform with Next.js and Stripe integration, focusing on user experience and performance.",
+    imageUrl: "https://placehold.co/600x400.png",
+    imageHint: "website interface e-commerce",
+    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Stripe"],
+    liveUrl: "#",
+    repoUrl: "#",
+    category: "Web Development",
   },
   {
-    id: "testimonial-2",
-    name: "Klien B",
-    title: "Marketing Manager, Startup Y",
-    quote: "Kemampuan Jason dalam menerjemahkan ide kompleks menjadi solusi yang elegan sangat mengesankan. Sangat direkomendasikan!",
-    avatarUrl: "https://placehold.co/100x100.png",
-    avatarHint: "manajer marketing",
+    id: "project-2",
+    title: "Photography Portfolio CMS",
+    description: "A custom CMS for photographers to manage and showcase their work, built with a headless approach.",
+    imageUrl: "https://placehold.co/600x400.png",
+    imageHint: "dashboard admin photography",
+    techStack: ["Vue.js", "Nuxt.js", "Sanity.io", "GraphQL"],
+    liveUrl: "#",
+    category: "Web Development",
   },
   {
-    id: "testimonial-3",
-    name: "Klien C",
-    title: "Fotografer Profesional",
-    quote: "Sebagai sesama kreator visual, saya mengapresiasi mata tajam Jason untuk desain dan fungsionalitas. Alat AI Photo Editornya sangat membantu!",
-    avatarUrl: "https://placehold.co/100x100.png",
-    avatarHint: "fotografer portrait",
+    id: "project-3",
+    title: "AI Content Generator",
+    description: "A SaaS tool leveraging Genkit to help users generate various types of content based on prompts.",
+    imageUrl: "https://placehold.co/600x400.png",
+    imageHint: "ai application interface",
+    techStack: ["React", "Genkit", "Firebase", "Node.js"],
+    repoUrl: "#",
+    category: "AI Development",
   },
 ];
+
 
 export const photosData: Photo[] = [
   {
@@ -123,7 +131,7 @@ export const footerLinks = {
   explore: [
     { href: "#home", label: "Home" },
     { href: "#about", label: "About Me" },
-    { href: "#testimonials", label: "Testimonials"},
+    { href: "#projects", label: "Projects"},
     { href: "#photo-editor", label: "AI Photo Editor" },
     { href: "#photography", label: "Gallery" },
     { href: "#seo-tool", label: "SEO Tool"},

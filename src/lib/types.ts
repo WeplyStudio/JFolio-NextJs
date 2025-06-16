@@ -5,23 +5,26 @@ export interface NavLink {
   href: string;
   label: string;
   external?: boolean;
-  icon?: LucideIcon; 
+  icon?: LucideIcon;
 }
 
 export interface SocialLink {
   name: string;
   url: string;
   icon: LucideIcon;
-  handle?: string; 
+  handle?: string;
 }
 
-export interface Testimonial {
+export interface Project {
   id: string;
-  name: string;
-  title: string; // e.g., CEO, Company X or Photographer
-  quote: string;
-  avatarUrl?: string;
-  avatarHint?: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  imageHint?: string; // For AI image search
+  techStack: string[];
+  liveUrl?: string;
+  repoUrl?: string;
+  category?: string;
 }
 
 export interface Photo {
@@ -35,8 +38,8 @@ export interface Photo {
 
 export interface Skill {
   name: string;
-  icon?: LucideIcon; 
-  level?: number; 
+  icon?: LucideIcon;
+  level?: number;
 }
 
 export interface ExperienceItem {
@@ -69,7 +72,7 @@ export interface SeoKeywordGeneratorInput {
 }
 
 export interface SeoKeywordGeneratorOutput {
-  keywords: string; 
+  keywords: string;
 }
 
 // Types for AI Photo Editor
