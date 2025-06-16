@@ -15,16 +15,12 @@ export interface SocialLink {
   handle?: string;
 }
 
-export interface Project {
+export interface ServiceItem {
   id: string;
   title: string;
   description: string;
-  imageUrl: string;
-  imageHint?: string; // For AI image search
-  techStack: string[];
-  liveUrl?: string;
-  repoUrl?: string;
-  category?: string;
+  icon: LucideIcon;
+  tags?: string[];
 }
 
 export interface Photo {

@@ -1,6 +1,6 @@
 
-import type { NavLink, Photo, Skill, ExperienceItem, FooterLinkItem, SocialLink, AISuggestion, Project } from './types';
-import { Github, Linkedin, Twitter, Instagram, Code, Camera, Briefcase, GraduationCap, Lightbulb, Bot, BarChart2, PenTool, WandSparkles, Film, Image as ImageIcon, Palette, MessageSquareText, Rocket } from 'lucide-react';
+import type { NavLink, Photo, Skill, ExperienceItem, FooterLinkItem, SocialLink, AISuggestion, ServiceItem } from './types';
+import { Github, Linkedin, Twitter, Instagram, Code, Camera, Briefcase, GraduationCap, Lightbulb, Bot, BarChart2, PenTool, WandSparkles, Film, Image as ImageIcon, Palette, MessageSquareText, Layers, Smartphone, Server, Search, Paintbrush, Rocket } from 'lucide-react';
 
 export const siteConfig = {
   name: "jasonn.zip",
@@ -14,13 +14,13 @@ export const siteConfig = {
     { name: "Twitter", url: "https://twitter.com/", icon: Twitter, handle: "@yourtwitter" },
     { name: "Instagram", url: "https://instagram.com/", icon: Instagram, handle: "@yourinstagram" },
   ] as SocialLink[],
-  keywords: ["portfolio", "developer", "photographer", "web design", "react", "nextjs", "ai photo editor"],
+  keywords: ["portfolio", "developer", "photographer", "web design", "react", "nextjs", "ai photo editor", "services", "web development", "ai solutions"],
 };
 
 export const navLinks: NavLink[] = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects", icon: Rocket },
+  { href: "#services", label: "Services", icon: Layers }, // Changed from Projects to Services
   { href: "#photo-editor", label: "AI Photo Editor", icon: WandSparkles },
   { href: "#photography", label: "Photography" },
   { href: "#seo-tool", label: "SEO Tool" },
@@ -57,37 +57,34 @@ export const aboutData = {
   ] as ExperienceItem[],
 };
 
-export const projectsData: Project[] = [
+export const whatIDoData: ServiceItem[] = [
   {
-    id: "project-1",
-    title: "E-commerce Platform",
-    description: "A full-featured e-commerce platform with Next.js and Stripe integration, focusing on user experience and performance.",
-    imageUrl: "https://placehold.co/600x400.png",
-    imageHint: "website interface e-commerce",
-    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Stripe"],
-    liveUrl: "#",
-    repoUrl: "#",
-    category: "Web Development",
+    id: "web-dev",
+    title: "Web Development",
+    description: "Crafting responsive, high-performance websites and web applications tailored to your needs using modern technologies.",
+    icon: Code,
+    tags: ["Next.js", "React", "Vue.js", "Node.js", "Tailwind CSS", "TypeScript"]
   },
   {
-    id: "project-2",
-    title: "Photography Portfolio CMS",
-    description: "A custom CMS for photographers to manage and showcase their work, built with a headless approach.",
-    imageUrl: "https://placehold.co/600x400.png",
-    imageHint: "dashboard admin photography",
-    techStack: ["Vue.js", "Nuxt.js", "Sanity.io", "GraphQL"],
-    liveUrl: "#",
-    category: "Web Development",
+    id: "ai-solutions",
+    title: "AI Integration",
+    description: "Leveraging artificial intelligence to build smart solutions, automate processes, and provide insightful data analysis.",
+    icon: Bot,
+    tags: ["Genkit", "Machine Learning", "NLP", "Chatbots"]
   },
   {
-    id: "project-3",
-    title: "AI Content Generator",
-    description: "A SaaS tool leveraging Genkit to help users generate various types of content based on prompts.",
-    imageUrl: "https://placehold.co/600x400.png",
-    imageHint: "ai application interface",
-    techStack: ["React", "Genkit", "Firebase", "Node.js"],
-    repoUrl: "#",
-    category: "AI Development",
+    id: "photography",
+    title: "Photography Services",
+    description: "Capturing moments with creativity and precision, offering professional photography for various needs.",
+    icon: Camera,
+    tags: ["Portrait", "Product", "Event", "Landscape"]
+  },
+  {
+    id: "ui-ux",
+    title: "UI/UX Design",
+    description: "Designing intuitive and engaging user interfaces that provide an optimal user experience across all devices.",
+    icon: Paintbrush, // Corrected casing here
+    tags: ["Figma", "Canva", "User Research", "Prototyping"]
   },
 ];
 
@@ -131,7 +128,7 @@ export const footerLinks = {
   explore: [
     { href: "#home", label: "Home" },
     { href: "#about", label: "About Me" },
-    { href: "#projects", label: "Projects"},
+    { href: "#services", label: "Services"}, // Changed from Projects
     { href: "#photo-editor", label: "AI Photo Editor" },
     { href: "#photography", label: "Gallery" },
     { href: "#seo-tool", label: "SEO Tool"},
