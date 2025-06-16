@@ -1,6 +1,7 @@
+
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react'; // Added useRef
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
 interface RotatingTextProps {
@@ -19,6 +20,7 @@ export function RotatingText({
   underlineClassName = "w-12 h-1 bg-blue-600 mx-auto rounded-full"
 }: RotatingTextProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const nodeRef = useRef<HTMLDivElement>(null); // Create a ref for the transitioning div
 
   useEffect(() => {
     if (items.length <= 1) return;
@@ -38,12 +40,17 @@ export function RotatingText({
     <div className={`relative flex items-center justify-center ${className}`}>
       <SwitchTransition mode="out-in">
         <CSSTransition
-          key={items[currentIndex]}
-          addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}
+          key={items[currentIndex]} // Key is important for SwitchTransition to re-trigger animation
+          nodeRef={nodeRef} // Pass the ref to CSSTransition
+          addEndListener={(node, done) => {
+            if (node) { // Ensure node exists before adding event listener
+                node.addEventListener("transitionend", done, false);
+            }
+          }}
           classNames="rotating-text"
           timeout={300}
         >
-          <div>
+          <div ref={nodeRef}> {/* Attach the ref to the direct child div */}
             <h3 className={textClassName}>
               {items[currentIndex]}
             </h3>
