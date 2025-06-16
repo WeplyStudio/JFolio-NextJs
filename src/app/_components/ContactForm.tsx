@@ -1,7 +1,8 @@
+
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
-import { useEffect } from "react";
+import { useActionState, useEffect } from "react"; // Updated import
+import { useFormStatus } from "react-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -42,7 +43,7 @@ function SubmitButton() {
 
 export function ContactForm() {
   const { toast } = useToast();
-  const [state, formAction] = useFormState<ContactFormState, FormData>(submitContactForm, {
+  const [state, formAction] = useActionState<ContactFormState, FormData>(submitContactForm, { // Updated hook
     message: "",
     success: false,
   });
