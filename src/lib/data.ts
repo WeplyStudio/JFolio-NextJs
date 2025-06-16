@@ -28,7 +28,7 @@ export const navLinks: NavLink[] = [
 ];
 
 export const aboutData = {
-  bio: `Halo! Saya ${siteConfig.name.split('.')[0]}, seorang ${siteConfig.jobTitle} yang bersemangat dari ${siteConfig.location}.
+  bio: `Halo! Saya Jason, seorang ${siteConfig.jobTitle} yang bersemangat dari ${siteConfig.location}.
   Saya berkembang dengan menciptakan pengalaman digital yang indah, fungsional, dan berpusat pada pengguna.
   Perjalanan saya di bidang teknologi dimulai dengan rasa ingin tahu tentang cara kerja berbagai hal, yang kemudian berkembang menjadi karier di mana saya dapat membangun dan berinovasi.
 

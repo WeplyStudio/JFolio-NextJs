@@ -7,16 +7,12 @@ import { ArrowDown, Code, Camera, Download } from 'lucide-react';
 import Link from 'next/link';
 
 export function HeroSection() {
-  const nameParts = siteConfig.name.split('.');
-  const mainName = nameParts[0];
-  const extension = nameParts.length > 1 ? `.${nameParts.slice(1).join('.')}` : '';
-
   return (
     <SectionWrapper id="home" className="min-h-[calc(100vh-4rem)] flex items-center bg-gradient-to-br from-background to-secondary/20">
       <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
         <div className="space-y-6 text-center md:text-left">
           <h1 className="text-4xl lg:text-6xl font-bold text-foreground font-headline">
-            Hai, Saya {mainName}{extension && <span className="text-primary">{extension}</span>}
+            Hai, Saya Jason
           </h1>
           <p className="text-xl lg:text-2xl text-muted-foreground flex items-center justify-center md:justify-start space-x-2">
             <span className="flex items-center"><Code className="h-6 w-6 mr-1.5 text-primary" /> Developer</span>
