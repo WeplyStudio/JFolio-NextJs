@@ -5,8 +5,8 @@ import { Github, Linkedin, Twitter, Instagram, Code, Camera, Briefcase, Graduati
 export const siteConfig = {
   name: "jasonn.zip", 
   jobTitle: "Digital Craftsman & Creative Mind", 
-  email: "contact@jasonn.zip", 
-  phone: "(123) 456-7890", 
+  email: "jason@weplystudio.my.id", 
+  phone: "+62 858-6805-5463", 
   location: "City, Country", 
   socials: [
     { name: "GitHub", url: "https://github.com/", icon: Github, handle: "@yourgithub" },
@@ -28,7 +28,7 @@ export const navLinks: NavLink[] = [
 ];
 
 export const aboutData = {
-  bio: `Hello! I'm ${siteConfig.name}, a passionate ${siteConfig.jobTitle} based in ${siteConfig.location}. 
+  bio: `Hello! I'm ${siteConfig.name.split('.')[0]}, a passionate ${siteConfig.jobTitle} based in ${siteConfig.location}. 
   I thrive on creating beautiful, functional, and user-centered digital experiences.
   My journey in tech started with a curiosity for how things work, which blossomed into a career where I can build and innovate.
   
@@ -166,3 +166,4 @@ export const initialFilters: AISuggestion['filters'] = {
   invert: 0,
   blur: 0,
 };
+
