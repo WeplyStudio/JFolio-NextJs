@@ -3,11 +3,11 @@ import type { NavLink, Project, Photo, Skill, ExperienceItem, FooterLinkItem, So
 import { Github, Linkedin, Twitter, Instagram, Code, Camera, Briefcase, GraduationCap, Lightbulb, Bot, BarChart2, PenTool, WandSparkles } from 'lucide-react'; // Added WandSparkles for Photo Editor
 
 export const siteConfig = {
-  name: "Your Name", // Placeholder, update with your name
-  jobTitle: "Digital Craftsman & Creative Mind", // Placeholder
-  email: "your.email@example.com", // Placeholder
-  phone: "(123) 456-7890", // Placeholder
-  location: "City, Country", // Placeholder
+  name: "jasonn.zip", 
+  jobTitle: "Digital Craftsman & Creative Mind", 
+  email: "contact@jasonn.zip", 
+  phone: "(123) 456-7890", 
+  location: "City, Country", 
   socials: [
     { name: "GitHub", url: "https://github.com/", icon: Github, handle: "@yourgithub" },
     { name: "LinkedIn", url: "https://linkedin.com/in/", icon: Linkedin, handle: "yourlinkedin" },
