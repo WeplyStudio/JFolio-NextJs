@@ -1,6 +1,6 @@
 
-import type { NavLink, Project, Photo, Skill, ExperienceItem, FooterLinkItem, SocialLink, AISuggestion } from './types';
-import { Github, Linkedin, Twitter, Instagram, Code, Camera, Briefcase, GraduationCap, Lightbulb, Bot, BarChart2, PenTool, WandSparkles, Film, Image as ImageIcon, Palette } from 'lucide-react'; // Added WandSparkles for Photo Editor, Film for Capcut, ImageIcon for Lightroom, Palette for Canva
+import type { NavLink, Photo, Skill, ExperienceItem, FooterLinkItem, SocialLink, AISuggestion, Testimonial } from './types';
+import { Github, Linkedin, Twitter, Instagram, Code, Camera, Briefcase, GraduationCap, Lightbulb, Bot, BarChart2, PenTool, WandSparkles, Film, Image as ImageIcon, Palette, MessageSquareText } from 'lucide-react';
 
 export const siteConfig = {
   name: "jasonn.zip",
@@ -20,7 +20,7 @@ export const siteConfig = {
 export const navLinks: NavLink[] = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
+  { href: "#testimonials", label: "Testimonials", icon: MessageSquareText },
   { href: "#photo-editor", label: "AI Photo Editor", icon: WandSparkles },
   { href: "#photography", label: "Photography" },
   { href: "#seo-tool", label: "SEO Tool" },
@@ -51,47 +51,36 @@ export const aboutData = {
     {
       role: "Founder",
       company: "Weply Studio (sekarang menjadi Zylo)",
-      duration: "2021 - Present",
-      description: "Memimpin visi, strategi, dan pengembangan produk di Weply Studio, yang kini telah bertransformasi menjadi Zylo. Berfokus pada solusi digital inovatif.",
+      duration: "2021 - Sekarang",
+      description: "Memimpin visi, strategi, dan pengembangan produk di Weply Studio, yang kini telah bertransformasi menjadi Zylo. Berfokus pada solusi digital inovatif untuk klien dan pasar.",
     },
-    // Anda bisa menambahkan pengalaman lain di sini jika ada
-    // {
-    //   role: "Freelance Photographer",
-    //   company: "Self-Employed",
-    //   duration: "Jun 2018 - Present",
-    //   description: "Capturing portraits, events, and landscapes, delivering high-quality images to clients.",
-    // },
   ] as ExperienceItem[],
 };
 
-export const projectsData: Project[] = [
+export const testimonialsData: Testimonial[] = [
   {
-    id: "1",
-    title: "E-commerce Platform",
-    description: "A full-featured e-commerce solution with Next.js, Stripe, and Tailwind CSS. Includes product listings, cart, and checkout.",
-    imageUrl: "https://placehold.co/600x400.png",
-    imageHint: "e-commerce online store",
-    tags: ["Next.js", "Stripe", "Tailwind CSS", "TypeScript"],
-    projectUrl: "#",
-    repoUrl: "#",
+    id: "testimonial-1",
+    name: "Klien A",
+    title: "CEO, Perusahaan X",
+    quote: "Bekerja dengan Jason sangat luar biasa. Profesionalismenya dan perhatian terhadap detail menghasilkan produk yang melebihi ekspektasi kami.",
+    avatarUrl: "https://placehold.co/100x100.png",
+    avatarHint: "klien portrait",
   },
   {
-    id: "2",
-    title: "AI Powered Content Generator",
-    description: "A web app using Genkit and Gemini to generate creative content like blog posts and social media updates.",
-    imageUrl: "https://placehold.co/600x400.png",
-    imageHint: "ai content writing",
-    tags: ["Genkit", "Gemini", "React", "Node.js"],
-    projectUrl: "#",
+    id: "testimonial-2",
+    name: "Klien B",
+    title: "Marketing Manager, Startup Y",
+    quote: "Kemampuan Jason dalam menerjemahkan ide kompleks menjadi solusi yang elegan sangat mengesankan. Sangat direkomendasikan!",
+    avatarUrl: "https://placehold.co/100x100.png",
+    avatarHint: "manajer marketing",
   },
   {
-    id: "3",
-    title: "Photography Portfolio CMS",
-    description: "A custom CMS for photographers to manage and showcase their work, built with React and Firebase.",
-    imageUrl: "https://placehold.co/600x400.png",
-    imageHint: "photography gallery website",
-    tags: ["React", "Firebase", "Material UI"],
-    repoUrl: "#",
+    id: "testimonial-3",
+    name: "Klien C",
+    title: "Fotografer Profesional",
+    quote: "Sebagai sesama kreator visual, saya mengapresiasi mata tajam Jason untuk desain dan fungsionalitas. Alat AI Photo Editornya sangat membantu!",
+    avatarUrl: "https://placehold.co/100x100.png",
+    avatarHint: "fotografer portrait",
   },
 ];
 
@@ -134,7 +123,7 @@ export const footerLinks = {
   explore: [
     { href: "#home", label: "Home" },
     { href: "#about", label: "About Me" },
-    { href: "#projects", label: "Projects" },
+    { href: "#testimonials", label: "Testimonials"},
     { href: "#photo-editor", label: "AI Photo Editor" },
     { href: "#photography", label: "Gallery" },
     { href: "#seo-tool", label: "SEO Tool"},

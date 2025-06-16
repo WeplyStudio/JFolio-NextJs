@@ -15,15 +15,13 @@ export interface SocialLink {
   handle?: string; 
 }
 
-export interface Project {
+export interface Testimonial {
   id: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  imageHint?: string;
-  tags: string[];
-  projectUrl?: string;
-  repoUrl?: string;
+  name: string;
+  title: string; // e.g., CEO, Company X or Photographer
+  quote: string;
+  avatarUrl?: string;
+  avatarHint?: string;
 }
 
 export interface Photo {
