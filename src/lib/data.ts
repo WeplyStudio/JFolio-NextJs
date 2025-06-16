@@ -7,7 +7,7 @@ export const siteConfig = {
   jobTitle: "Digital Craftsman & Creative Mind", 
   email: "jason@weplystudio.my.id", 
   phone: "+62 858-6805-5463", 
-  location: "City, Country", 
+  location: "Tanjung Pinang, Kepulauan Riau", 
   socials: [
     { name: "GitHub", url: "https://github.com/", icon: Github, handle: "@yourgithub" },
     { name: "LinkedIn", url: "https://linkedin.com/in/", icon: Linkedin, handle: "yourlinkedin" },
