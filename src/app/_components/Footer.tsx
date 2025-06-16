@@ -46,10 +46,10 @@ function FooterAccordionItem({ title, links }: AccordionItemProps) {
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  const nameParts = siteConfig.name.split(' ');
-  const firstName = nameParts[0];
-  const lastName = nameParts.slice(1).join(' ');
-  const styledName = <>{firstName}{lastName && <span className="text-primary">.{lastName}</span>}</>;
+  const nameParts = siteConfig.name.split('.');
+  const mainName = nameParts[0];
+  const extension = nameParts.length > 1 ? `.${nameParts.slice(1).join('.')}` : '';
+  const styledName = <>{mainName}{extension && <span className="text-primary">{extension}</span>}</>;
 
 
   return (

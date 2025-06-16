@@ -12,9 +12,9 @@ import type { NavLink as NavLinkType } from '@/lib/types';
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const nameParts = siteConfig.name.split(' ');
-  const firstName = nameParts[0];
-  const lastName = nameParts.slice(1).join(' ');
+  const nameParts = siteConfig.name.split('.');
+  const mainName = nameParts[0];
+  const extension = nameParts.length > 1 ? `.${nameParts.slice(1).join('.')}` : '';
 
   return (
     <header className="sticky top-0 z-50 transition-all duration-300 bg-background shadow-sm border-b border-border/60">
@@ -22,7 +22,7 @@ export function Header() {
         <div className="flex justify-between items-center h-16 md:h-18">
           <div className="flex-shrink-0">
             <Link href="#home" className="text-foreground font-bold text-xl hover:opacity-80 transition-opacity">
-              {firstName}{lastName && <span className="text-primary">.{lastName}</span>}
+              {mainName}{extension && <span className="text-primary">{extension}</span>}
             </Link>
           </div>
           
@@ -65,11 +65,9 @@ export function Header() {
                         className="text-foreground font-bold text-xl hover:opacity-80 transition-opacity"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        {firstName}{lastName && <span className="text-primary">.{lastName}</span>}
+                        {mainName}{extension && <span className="text-primary">{extension}</span>}
                       </Link>
                     </SheetTitle>
-                    {/* The redundant X button was here and has been removed. 
-                        SheetContent provides its own close button. */}
                   </SheetHeader>
                   <nav className="flex flex-col space-y-2 p-6">
                     {navLinks.map((link: NavLinkType) => (
