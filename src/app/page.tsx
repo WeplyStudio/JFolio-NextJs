@@ -1,23 +1,29 @@
 import { Header } from './_components/Header';
 import { Footer } from './_components/Footer';
-import { HeroSection } from './_components/HeroSection';
-import { AboutSection } from './_components/AboutSection';
-import { ProjectsSection } from './_components/ProjectsSection';
-import { PhotographySection } from './_components/PhotographySection';
-import { SeoToolSection } from './_components/SeoToolSection';
-import { ContactSection } from './_components/ContactSection';
+import { HeroEasyKripsi } from './_components/HeroEasyKripsi';
+import { CompareFeaturesSection } from './_components/CompareFeaturesSection';
+import { AdvantagesSection } from './_components/AdvantagesSection';
+import { TestimonialsSectionEasyKripsi } from './_components/TestimonialsSectionEasyKripsi';
 
-export default function PortfolioPage() {
+// The HTML structure suggests these sections are part of the main content flow.
+// IDs like #features, #product, #packages are present in the HTML.
+// #features -> AdvantagesSection
+// #product / #compare -> CompareFeaturesSection (includes pricing cards)
+// #packages -> Could also be CompareFeaturesSection or a separate section if it existed.
+
+export default function EasyKripsiPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header />
       <main className="flex-grow">
-        <HeroSection />
-        <AboutSection />
-        <ProjectsSection />
-        <PhotographySection />
-        <SeoToolSection />
-        <ContactSection />
+        <HeroEasyKripsi />
+        {/* The section with id="compare" contains both the table and pricing cards */}
+        <CompareFeaturesSection /> 
+        <AdvantagesSection />
+        <TestimonialsSectionEasyKripsi />
+        {/* The div with id="packages" in the HTML is empty, possibly a scroll anchor. 
+            The pricing packages are included within CompareFeaturesSection. */}
+        <div id="packages" className="scroll-mt-20"></div> {/* Added for anchor, content is in CompareFeaturesSection */}
       </main>
       <Footer />
     </div>

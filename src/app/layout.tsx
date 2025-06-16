@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
-import { Toaster } from "@/components/ui/toaster";
+// Removed Toaster as it's not in the new design
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+// Ensure the font is correctly imported if not already via globals.css or tailwind config
+// For Plus Jakarta Sans, we'll add it via <link> tags like in the HTML example.
 
 export const metadata: Metadata = {
-  title: 'Kripsyfolio | Developer & Photographer',
-  description: 'Portfolio of Kripsy Folio, showcasing development projects and photography work.',
-  keywords: "developer, photographer, portfolio, web development, software engineering, photography gallery",
+  title: 'Easy Kripsi', // Updated title
+  description: 'Otomatisasi format skripsi/tesis Anda dalam sekejap. Hemat waktu penulisan skripsi dengan pintasan keyboard dan alat cerdas untuk Word.',
+  keywords: "template skripsi, format skripsi, otomatisasi skripsi, tesis, microsoft word, easy kripsi",
 };
 
 export default function RootLayout({
@@ -19,13 +19,20 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+          rel="stylesheet"
+        />
       </head>
-      <body className={`${inter.variable} font-body antialiased bg-background text-foreground`}>
+      {/* The body style "overflow: unset" from HTML is default browser behavior.
+          The min-h-screen on the main div in page.tsx will manage layout height. */}
+      <body className="font-body antialiased bg-white text-gray-900"> {/* Updated base styles */}
         {children}
-        <Toaster />
+        {/* <Toaster /> Toaster removed */}
       </body>
     </html>
   );

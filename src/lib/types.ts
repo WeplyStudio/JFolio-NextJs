@@ -1,35 +1,42 @@
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  tags: string[];
-  projectUrl?: string;
-  repoUrl?: string;
-  imageHint?: string;
-}
-
-export interface Photo {
-  id: string;
-  title: string;
-  imageUrl: string;
-  description?: string;
-  imageHint?: string;
-}
+// Removed Project, Photo, Skill, ExperienceItem as they are not used in the new design
 
 export interface NavLink {
   href: string;
   label: string;
+  external?: boolean; // To handle external links in nav
 }
 
-export interface Skill {
-  name: string;
-  icon?: React.ComponentType<{ className?: string }>;
+// Add any new types specific to "Easy Kripsi" if needed
+// For example, for features, testimonials, etc.
+
+export interface FeatureComparisonItem {
+  feature: string;
+  basic: boolean | string; // boolean for check, string for text
+  advance: boolean | string;
+  description?: string;
 }
 
-export interface ExperienceItem {
-  role: string;
-  company: string;
-  duration: string;
+export interface AdvantageItem {
+  title: string;
   description: string;
+  iconName: "Zap" | "Clock" | "ThumbsUp"; // Or a more generic string if icons vary widely
+}
+
+export interface TestimonialItem {
+  quote: string;
+  name: string;
+  university: string;
+  avatarInitial: string;
+  avatarBg: string; // e.g. "bg-blue-500"
+}
+
+export interface FooterLinkItem {
+  href: string;
+  label: string;
+  className?: string;
+}
+
+export interface FooterSection {
+  title: string;
+  links: FooterLinkItem[];
 }
