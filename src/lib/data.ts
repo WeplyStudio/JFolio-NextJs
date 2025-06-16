@@ -20,7 +20,7 @@ export const siteConfig = {
 export const navLinks: NavLink[] = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
-  { href: "#services", label: "Services", icon: Layers }, // Changed from Projects to Services
+  { href: "#services", label: "Services", icon: Layers },
   { href: "#photo-editor", label: "AI Photo Editor", icon: WandSparkles },
   { href: "#photography", label: "Photography" },
   { href: "#seo-tool", label: "SEO Tool" },
@@ -128,7 +128,7 @@ export const footerLinks = {
   explore: [
     { href: "#home", label: "Home" },
     { href: "#about", label: "About Me" },
-    { href: "#services", label: "Services"}, // Changed from Projects
+    { href: "#services", label: "Services"},
     { href: "#photo-editor", label: "AI Photo Editor" },
     { href: "#photography", label: "Gallery" },
     { href: "#seo-tool", label: "SEO Tool"},
