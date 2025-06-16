@@ -28,11 +28,11 @@ export function HeroSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
             <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg">
-              <Link href="#projects">View My Work</Link>
+              <Link href="#services">View My Services</Link>
             </Button>
             <Button size="lg" variant="outline" asChild className="border-primary text-primary hover:bg-primary/10 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md hover:border-primary/70">
               {/* Link to a resume file, or a contact section for resume request */}
-              <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer"> 
+              <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
                 <Download className="mr-2 h-5 w-5" />
                 My Resume
               </Link>
@@ -41,13 +41,13 @@ export function HeroSection() {
         </div>
         <div className="relative aspect-square max-w-sm mx-auto md:max-w-md">
           <Image
-            src="https://placehold.co/600x600.png" // Replace with your actual image
-            alt={`${siteConfig.name} - ${siteConfig.jobTitle}`}
+            src="https://cdn.dribbble.com/userupload/22354020/file/original-b5ef6e0ccc07d15ab4353db156ecf6c4.gif"
+            alt={`${siteConfig.name} - Animated Hero GIF`}
             width={600}
             height={600}
             priority
+            unoptimized={true} // GIFs are often better unoptimized by next/image
             className="rounded-xl shadow-2xl object-cover border-4 border-card"
-            data-ai-hint="professional portrait developer"
           />
            <div className="absolute -bottom-4 -right-4 bg-card p-3 rounded-lg shadow-xl border border-border/80">
             <p className="text-sm font-semibold text-primary">Digital Creator</p>
