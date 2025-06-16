@@ -1,3 +1,4 @@
+
 import { Header } from './_components/Header';
 import { Footer } from './_components/Footer';
 import { HeroSection } from './_components/HeroSection';
@@ -6,6 +7,7 @@ import { ProjectsSection } from './_components/ProjectsSection';
 import { PhotographySection } from './_components/PhotographySection';
 import { SeoToolSection } from './_components/SeoToolSection';
 import { ContactSection } from './_components/ContactSection';
+import { PhotoEditorSection } from './_components/PhotoEditorSection';
 
 export default function PortfolioPage() {
   return (
@@ -15,6 +17,7 @@ export default function PortfolioPage() {
         <HeroSection />
         <AboutSection />
         <ProjectsSection />
+        <PhotoEditorSection />
         <PhotographySection />
         <SeoToolSection />
         <ContactSection />

@@ -1,5 +1,6 @@
-import type { NavLink, Project, Photo, Skill, ExperienceItem, FooterLinkItem, SocialLink } from './types';
-import { Github, Linkedin, Twitter, Instagram, Code, Camera, Briefcase, GraduationCap, Lightbulb, Bot, BarChart2, PenTool } from 'lucide-react'; // Added more icons
+
+import type { NavLink, Project, Photo, Skill, ExperienceItem, FooterLinkItem, SocialLink, AISuggestion } from './types';
+import { Github, Linkedin, Twitter, Instagram, Code, Camera, Briefcase, GraduationCap, Lightbulb, Bot, BarChart2, PenTool, WandSparkles } from 'lucide-react'; // Added WandSparkles for Photo Editor
 
 export const siteConfig = {
   name: "Your Name", // Placeholder, update with your name
@@ -13,13 +14,14 @@ export const siteConfig = {
     { name: "Twitter", url: "https://twitter.com/", icon: Twitter, handle: "@yourtwitter" },
     { name: "Instagram", url: "https://instagram.com/", icon: Instagram, handle: "@yourinstagram" },
   ] as SocialLink[],
-  keywords: ["portfolio", "developer", "photographer", "web design", "react", "nextjs"],
+  keywords: ["portfolio", "developer", "photographer", "web design", "react", "nextjs", "ai photo editor"],
 };
 
 export const navLinks: NavLink[] = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
   { href: "#projects", label: "Projects" },
+  { href: "#photo-editor", label: "AI Photo Editor", icon: WandSparkles },
   { href: "#photography", label: "Photography" },
   { href: "#seo-tool", label: "SEO Tool" },
   { href: "#contact", label: "Contact" },
@@ -72,8 +74,8 @@ export const projectsData: Project[] = [
     imageUrl: "https://placehold.co/600x400.png",
     imageHint: "e-commerce online store",
     tags: ["Next.js", "Stripe", "Tailwind CSS", "TypeScript"],
-    projectUrl: "#", // Replace with actual URL
-    repoUrl: "#",    // Replace with actual URL
+    projectUrl: "#", 
+    repoUrl: "#",    
   },
   {
     id: "2",
@@ -100,7 +102,7 @@ export const photosData: Photo[] = [
     id: "p1",
     title: "Mountain Sunrise",
     description: "Early morning light hitting the peaks.",
-    imageUrl: "https://placehold.co/400x533.png", // Portrait-like aspect ratio
+    imageUrl: "https://placehold.co/400x533.png", 
     imageHint: "mountain landscape sunrise",
     category: "Landscape",
   },
@@ -130,13 +132,14 @@ export const photosData: Photo[] = [
   },
 ];
 
-// Footer links adapted for portfolio, keeping EasyKripsi structure
 export const footerLinks = {
   explore: [
     { href: "#home", label: "Home" },
     { href: "#about", label: "About Me" },
     { href: "#projects", label: "Projects" },
+    { href: "#photo-editor", label: "AI Photo Editor" },
     { href: "#photography", label: "Gallery" },
+    { href: "#seo-tool", label: "SEO Tool"},
   ],
   connect: [
     { href: "#contact", label: "Contact Me" },
@@ -144,10 +147,22 @@ export const footerLinks = {
   ],
   tools: [
     { href: "#seo-tool", label: "SEO Keyword Tool" },
-    // Add other tools or resources if any
+    { href: "#photo-editor", label: "AI Photo Editor" },
   ],
   legal: [
-     { href: "#", label: "Privacy Policy" }, // Placeholder
-     { href: "#", label: "Terms of Service" }, // Placeholder
+     { href: "#", label: "Privacy Policy" }, 
+     { href: "#", label: "Terms of Service" }, 
   ]
+};
+
+// Default CSS filter values
+export const initialFilters: AISuggestion['filters'] = {
+  brightness: 1,
+  contrast: 1,
+  saturate: 1,
+  grayscale: 0,
+  sepia: 0,
+  hueRotate: 0,
+  invert: 0,
+  blur: 0,
 };

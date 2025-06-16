@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
-import { Menu as MenuIcon, X as XIcon, MessageSquare } from 'lucide-react'; // Using MessageSquare for "Contact Me"
+import { Menu as MenuIcon, X as XIcon, MessageSquare } from 'lucide-react'; 
 import { siteConfig, navLinks } from '@/lib/data';
 import type { NavLink as NavLinkType } from '@/lib/types';
 
@@ -26,15 +26,16 @@ export function Header() {
             </Link>
           </div>
           
-          <nav className="hidden md:flex space-x-8 text-sm justify-center">
+          <nav className="hidden md:flex space-x-6 text-sm justify-center items-center"> {/* Reduced space-x-8 to space-x-6 */}
             {navLinks.map((link: NavLinkType) => (
               <Link
                 key={link.label}
                 href={link.href}
                 target={link.external ? "_blank" : "_self"}
                 rel={link.external ? "noopener noreferrer" : ""}
-                className="text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
+                className="text-muted-foreground hover:text-primary transition-colors whitespace-nowrap flex items-center"
               >
+                {link.icon && <link.icon className="mr-1.5 h-4 w-4 text-primary/80" />}
                 {link.label}
               </Link>
             ))}
@@ -80,8 +81,9 @@ export function Header() {
                         target={link.external ? "_blank" : "_self"}
                         rel={link.external ? "noopener noreferrer" : ""}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="block py-2 px-3 rounded-md font-medium text-foreground hover:bg-muted hover:text-primary transition-colors"
+                        className="flex items-center py-2 px-3 rounded-md font-medium text-foreground hover:bg-muted hover:text-primary transition-colors"
                       >
+                         {link.icon && <link.icon className="mr-2 h-4 w-4 text-primary/80" />}
                         {link.label}
                       </Link>
                     ))}
