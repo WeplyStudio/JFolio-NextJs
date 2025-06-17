@@ -9,10 +9,10 @@ export const siteConfig = {
   phone: "+62 858-6805-5463",
   location: "Tanjung Pinang, Kepulauan Riau",
   socials: [
-    { name: "GitHub", url: "https://github.com/", icon: Github, handle: "@yourgithub" },
+    { name: "GitHub", url: "https://github.com/", icon: Github, handle: "@github" },
     { name: "LinkedIn", url: "https://linkedin.com/in/", icon: Linkedin, handle: "yourlinkedin" },
     { name: "Twitter", url: "https://twitter.com/", icon: Twitter, handle: "@yourtwitter" },
-    { name: "Instagram", url: "https://instagram.com/", icon: Instagram, handle: "@yourinstagram" },
+    { name: "Instagram", url: "https://instagram.com/", icon: Instagram, handle: "@jasonn.zip" },
   ] as SocialLink[],
   keywords: ["portofolio", "developer", "fotografer", "desain web", "react", "nextjs", "editor foto ai", "layanan", "pengembangan web", "solusi ai"],
 };
@@ -27,12 +27,7 @@ export const navLinks: NavLink[] = [
 ];
 
 export const aboutData = {
-  bio: `Halo! Saya Jason, seorang ${siteConfig.jobTitle} yang bersemangat dari ${siteConfig.location}.
-  Saya berkembang dengan menciptakan pengalaman digital yang indah, fungsional, dan berpusat pada pengguna.
-  Perjalanan saya di bidang teknologi dimulai dengan rasa ingin tahu tentang cara kerja berbagai hal, yang kemudian berkembang menjadi karier di mana saya dapat membangun dan berinovasi.
-
-  Ketika saya tidak sedang membuat kode atau mendesain, saya suka menjelajahi dunia melalui lensa kamera saya, mengabadikan momen dan cerita.
-  Portofolio ini adalah sekilas tentang dunia saya – perpaduan antara teknologi dan seni. Mari ciptakan sesuatu yang luar biasa bersama!`,
+  bio: `Halo! 👋, Saya jason!, seseorang yang suka dalam dunia teknologi terutama di dunia pemrograman, bagi saya pemrograman adalah salah satu cara untuk mengekspresikan kreativitas dan imajinasi dalam bentuk digital.`,
   skills: [
     { name: "JavaScript", icon: Code, level: 90 },
     { name: "React", icon: Code, level: 90 },
@@ -126,17 +121,24 @@ export const resumeStatusData: ResumeStatusData = {
   userInitial: "J",
   updates: [
     {
+      id: "start",
+      category: "Perkenalan",
+      icon: Flame,
+      content: "Halo! 👋, Perkenalkan saya jason! seseorang yang sangat menyukai tentang dunia teknologi terutama pemrograman!.",
+      timestamp: "",
+    },
+    {
       id: "exp1",
       category: "Pengalaman Profesional",
       icon: Briefcase,
-      content: "Mendirikan dan memimpin Weply Studio (sekarang Zylo) sejak 2021, berfokus pada pengembangan produk digital inovatif dan strategi pertumbuhan. Mengarahkan tim dalam menciptakan solusi web & AI yang berdampak.",
+      content: "Pada 2021 saya memulai karir saya sebagai pendiri dari Weply Studio yang saat ini berganti nama menjadi Zylo yaitu suatu bisnis yang berjalan di bidang web hosting dan lainnya.",
       timestamp: "2021 - Saat Ini",
     },
     {
       id: "skill1",
       category: "Keahlian Teknis Utama",
       icon: Code,
-      content: "Mahir dalam Full-Stack Web Development: Next.js, React, Vue.js, Node.js, dan PHP. Menguasai Tailwind CSS & TypeScript untuk membangun aplikasi modern yang skalabel dan responsif.",
+      content: "Saya Mahir dalam Full-Stack Web Development: Next.js, React, Vue.js, Node.js, dan PHP. Menguasai Tailwind CSS & TypeScript untuk membangun aplikasi modern yang skalabel dan responsif.",
       timestamp: "Praktisi Aktif & Berpengalaman",
     },
     {
@@ -164,7 +166,7 @@ export const resumeStatusData: ResumeStatusData = {
       id: "achieve1",
       category: "Proyek Unggulan & Pencapaian",
       icon: Star,
-      content: "Berhasil meluncurkan 5+ proyek web skala menengah dan besar, membantu klien mencapai tujuan bisnis dan digital mereka. Membangun Weply Studio dari nol hingga transformasi menjadi Zylo.",
+      content: "Saya telah berhasil membuat dan mempublikasikam 5+ proyek web skala menengah dan besar, untuk membantu klien mencapai tujuan bisnis dan digital mereka. Serta membangun Weply Studio dari nol hingga transformasi menjadi Zylo.",
       timestamp: "Hasil Nyata & Kontribusi Positif",
     },
      {
