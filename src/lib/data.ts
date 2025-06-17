@@ -1,6 +1,6 @@
 
 import type { NavLink, Skill, ExperienceItem, FooterLinkItem, SocialLink, AISuggestion, ServiceItem, ResumeStatusData } from './types';
-import { Github, Linkedin, Twitter, Instagram, Code, Camera, Layers, WandSparkles, Bot, Film, Image as ImageIcon, Palette, MessageSquareText, Paintbrush, Briefcase, GraduationCap, Star, Award, Zap } from 'lucide-react';
+import { Github, Linkedin, Twitter, Instagram, Code, Camera, Layers, WandSparkles, Bot, Film, Image as ImageIcon, Palette, MessageSquareText, Paintbrush, Briefcase, GraduationCap, Star, Award, Zap, Lightbulb } from 'lucide-react';
 
 export const siteConfig = {
   name: "jasonn.zip",
@@ -127,52 +127,52 @@ export const resumeStatusData: ResumeStatusData = {
   updates: [
     {
       id: "exp1",
-      category: "Pengalaman",
+      category: "Pengalaman Profesional",
       icon: Briefcase,
-      content: "Pendiri di Weply Studio (sekarang Zylo), memimpin inovasi produk digital.",
-      timestamp: "2021 - Sekarang",
+      content: "Sebagai Pendiri Weply Studio (kini Zylo), saya mengarahkan pengembangan produk digital inovatif dan strategi pertumbuhan perusahaan. Fokus pada solusi web & AI.",
+      timestamp: "2021 - Saat Ini",
     },
     {
       id: "skill1",
-      category: "Keahlian Utama",
+      category: "Keahlian Teknis Inti",
       icon: Code,
-      content: "Pengembangan Web (React, Next.js, Vue, PHP, Tailwind CSS).",
-      timestamp: "Mahir",
+      content: "Full-Stack Web: Next.js, React, Vue.js, Node.js, PHP, Tailwind CSS, TypeScript. Berpengalaman membangun aplikasi yang skalabel dan performan.",
+      timestamp: "Level: Mahir & Praktisi Aktif",
     },
     {
       id: "skill2",
-      category: "Keahlian Kreatif",
+      category: "Keahlian Kreatif & Desain",
       icon: Palette,
-      content: "Desain UI/UX, Fotografi, Video Editing (Capcut, Lightroom, Canva).",
-      timestamp: "Terampil",
+      content: "Desain UI/UX (Figma & Canva) dengan fokus pada pengalaman pengguna. Fotografi profesional & video editing (Adobe Lightroom & Capcut).",
+      timestamp: "Portofolio Visual Tersedia",
     },
     {
       id: "skill3",
-      category: "Solusi AI",
+      category: "Inovasi & Pengembangan AI",
       icon: Bot,
-      content: "Integrasi AI & Pengembangan Fitur Cerdas dengan Genkit.",
-      timestamp: "Berkembang",
+      content: "Mengimplementasikan solusi AI dengan Genkit & Google AI. Tertarik pada Machine Learning, NLP, dan otomatisasi cerdas untuk bisnis.",
+      timestamp: "Area Eksplorasi & Pertumbuhan",
     },
     {
       id: "edu1",
-      category: "Pendidikan",
+      category: "Pendidikan & Sertifikasi",
       icon: GraduationCap,
-      content: "Belajar Mandiri & Kursus Online di bidang Web Development dan Desain Grafis.",
-      timestamp: "Berkelanjutan",
+      content: "Pembelajar mandiri yang berdedikasi. Telah menyelesaikan berbagai kursus dan sertifikasi online di bidang Web Development, Desain Grafis, dan AI.",
+      timestamp: "Komitmen Belajar Seumur Hidup",
     },
     {
       id: "achieve1",
-      category: "Pencapaian",
-      icon: Award,
-      content: "Berhasil meluncurkan beberapa proyek web dan membangun Weply Studio.",
-      timestamp: "Signifikan",
+      category: "Proyek Unggulan & Dampak",
+      icon: Star, // Menggunakan Star untuk 'unggulan'
+      content: "Berhasil meluncurkan 5+ proyek web skala menengah, membantu klien mencapai tujuan digital mereka. Membangun Weply Studio dari awal hingga bertransformasi.",
+      timestamp: "Hasil & Kontribusi Nyata",
     },
      {
       id: "passion1",
-      category: "Minat",
-      icon: Zap,
-      content: "Tertarik pada perpaduan teknologi, seni, dan solusi AI yang inovatif.",
-      timestamp: "Selalu Ingin Tahu",
+      category: "Filosofi & Minat Pribadi",
+      icon: Lightbulb, // Lightbulb untuk ide dan filosofi
+      content: "Saya percaya pada kekuatan sinergi antara teknologi mutakhir, desain yang berpusat pada manusia, dan solusi AI untuk menciptakan pengalaman digital yang tidak hanya fungsional, tapi juga menginspirasi.",
+      timestamp: "Inovasi dengan Tujuan",
     },
   ],
 };
