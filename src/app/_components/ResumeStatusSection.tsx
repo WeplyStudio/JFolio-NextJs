@@ -3,80 +3,115 @@
 
 import type { FC } from 'react';
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { X } from 'lucide-react';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import type { ResumeStatusData, ResumeStatusUpdate } from '@/lib/types';
-// Progress component is not used for individual segment fill-up animation yet
-// import { Progress } from '@/components/ui/progress'; 
-
-interface ResumeStatusSectionProps {
-  data: ResumeStatusData;
-  isOpen: boolean;
-  onClose: () => void;
-  initialStatusIndex?: number;
-}
+import type { ResumeStatusData } from '@/lib/types';
 
 const AUTO_ADVANCE_DURATION = 4000; // 4 seconds
 
-export const ResumeStatusSection: FC<ResumeStatusSectionProps> = ({
-  data,
+export const ResumeStatusSection: FC<ResumeStatusData & {
+  isOpen: boolean;
+  onClose: () => void;
+  initialStatusIndex?: number;
+}> = ({
+  userName,
+  userInitial,
+  updates,
   isOpen,
   onClose,
   initialStatusIndex = 0,
 }) => {
   const [currentStatusIndex, setCurrentStatusIndex] = useState(initialStatusIndex);
+  const [segmentProgress, setSegmentProgress] = useState(0); // Progress for the current segment (0-100)
   const [animateOut, setAnimateOut] = useState(false);
+
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const segmentAnimationRef = useRef<number | null>(null);
+  const segmentStartTimeRef = useRef<number>(0);
 
-  const totalStatuses = data.updates.length;
-  const currentUpdate = data.updates[currentStatusIndex];
+  const totalStatuses = updates.length;
+  const currentUpdate = updates[currentStatusIndex];
 
-  const clearTimer = useCallback(() => {
+  const clearTimers = useCallback(() => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
       timerRef.current = null;
     }
+    if (segmentAnimationRef.current) {
+      cancelAnimationFrame(segmentAnimationRef.current);
+      segmentAnimationRef.current = null;
+    }
   }, []);
 
   const handleClose = useCallback(() => {
-    clearTimer();
+    clearTimers();
     setAnimateOut(true);
     setTimeout(() => {
       onClose();
       setAnimateOut(false);
       setCurrentStatusIndex(0); // Reset for next open
+      setSegmentProgress(0);
     }, 300); // Match animation duration
-  }, [onClose, clearTimer]);
+  }, [onClose, clearTimers]);
 
   const goToNextStatus = useCallback((isAutoAdvance: boolean = false) => {
-    clearTimer();
+    clearTimers();
     if (currentStatusIndex < totalStatuses - 1) {
       setCurrentStatusIndex((prev) => prev + 1);
+      setSegmentProgress(0); // Reset progress for new segment
     } else {
-      handleClose(); // Close when last status is finished
+      handleClose();
     }
-  }, [currentStatusIndex, totalStatuses, handleClose, clearTimer]);
+  }, [currentStatusIndex, totalStatuses, handleClose, clearTimers]);
 
   const goToPreviousStatus = useCallback(() => {
-    clearTimer();
+    clearTimers();
     if (currentStatusIndex > 0) {
       setCurrentStatusIndex((prev) => prev - 1);
+      setSegmentProgress(0); // Reset progress for new segment
     }
-  }, [currentStatusIndex, clearTimer]);
-
+  }, [currentStatusIndex, clearTimers]);
 
   useEffect(() => {
     if (isOpen) {
-      setCurrentStatusIndex(initialStatusIndex); // Reset to initial when opened
+      setCurrentStatusIndex(initialStatusIndex);
+      setSegmentProgress(0);
     } else {
-      clearTimer(); // Clear timer if closed externally
+      clearTimers();
     }
-  }, [isOpen, initialStatusIndex, clearTimer]);
+  }, [isOpen, initialStatusIndex, clearTimers]);
 
 
   useEffect(() => {
     if (!isOpen) return;
+
+    const animateSegment = (timestamp: number) => {
+      if (!segmentStartTimeRef.current) {
+        segmentStartTimeRef.current = timestamp;
+      }
+      const elapsed = timestamp - segmentStartTimeRef.current;
+      const progress = Math.min(100, (elapsed / AUTO_ADVANCE_DURATION) * 100);
+      setSegmentProgress(progress);
+
+      if (progress < 100) {
+        segmentAnimationRef.current = requestAnimationFrame(animateSegment);
+      }
+    };
+
+    clearTimers(); // Clear any existing timers before starting new ones
+    segmentStartTimeRef.current = 0; // Reset start time for the animation frame
+    
+    // Start segment fill animation
+    segmentAnimationRef.current = requestAnimationFrame(animateSegment);
+
+    // Set timer for auto-advancing to the next status
+    if (currentStatusIndex < totalStatuses) { // Check if there are statuses to advance to
+        timerRef.current = setTimeout(() => {
+        goToNextStatus(true);
+        }, AUTO_ADVANCE_DURATION);
+    }
+
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowRight') {
@@ -91,25 +126,9 @@ export const ResumeStatusSection: FC<ResumeStatusSectionProps> = ({
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
+      clearTimers();
     };
-  }, [isOpen, goToNextStatus, goToPreviousStatus, handleClose]);
-
-
-  useEffect(() => {
-    if (isOpen && currentStatusIndex < totalStatuses - 1) {
-      clearTimer(); // Clear existing timer before setting a new one
-      timerRef.current = setTimeout(() => {
-        goToNextStatus(true);
-      }, AUTO_ADVANCE_DURATION);
-    } else {
-      clearTimer(); // Clear timer if it's the last status or not open
-    }
-
-    // Cleanup timer on component unmount or when dependencies change
-    return () => {
-      clearTimer();
-    };
-  }, [isOpen, currentStatusIndex, totalStatuses, goToNextStatus, clearTimer]);
+  }, [isOpen, currentStatusIndex, totalStatuses, goToNextStatus, goToPreviousStatus, handleClose, clearTimers]);
 
 
   if (!isOpen && !animateOut) {
@@ -127,18 +146,18 @@ export const ResumeStatusSection: FC<ResumeStatusSectionProps> = ({
       {/* Progress Segments */}
       <div className="pt-3 px-3 w-full">
         <div className="flex w-full gap-1 mb-2">
-          {data.updates.map((_, index) => (
+          {updates.map((_, index) => (
             <div
               key={`progress-${index}`}
-              className="h-1 flex-1 rounded-full bg-primary-foreground/30 overflow-hidden" // Added overflow-hidden for potential animation
+              className="h-1 flex-1 rounded-full bg-primary-foreground/30 overflow-hidden"
             >
               <div
-                className={`h-full rounded-full bg-primary-foreground transition-all duration-200 ${
-                  index < currentStatusIndex ? 'w-full' : 
-                  index === currentStatusIndex ? 'w-1/2' : // Could be 'w-0' initially and animate width with timer
-                  'w-0'
-                }`}
-                 // If individual segment animation is desired, style.width would be animated here
+                className={`h-full rounded-full bg-primary-foreground`}
+                style={
+                  index < currentStatusIndex ? { width: '100%' } :
+                  index === currentStatusIndex ? { width: `${segmentProgress}%` } :
+                  { width: '0%' }
+                }
               />
             </div>
           ))}
@@ -148,12 +167,11 @@ export const ResumeStatusSection: FC<ResumeStatusSectionProps> = ({
         <div className="flex justify-between items-center w-full mb-3">
           <div className="flex items-center gap-2">
             <Avatar className="h-8 w-8 border-2 border-primary-foreground/50">
-              {/* <AvatarImage src={data.userImageUrl} alt={data.userName} /> */}
               <AvatarFallback className="text-sm bg-primary-foreground text-primary">
-                {data.userInitial}
+                {userInitial}
               </AvatarFallback>
             </Avatar>
-            <span id="resume-status-title" className="font-semibold text-sm">{data.userName}</span>
+            <span id="resume-status-title" className="font-semibold text-sm">{userName}</span>
             <span className="text-xs text-primary-foreground/70">{currentUpdate?.timestamp}</span>
           </div>
           <Button variant="ghost" size="icon" onClick={handleClose} className="text-primary-foreground hover:bg-primary-foreground/10 h-8 w-8">
