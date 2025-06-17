@@ -1,6 +1,6 @@
 
-import type { NavLink, Skill, ExperienceItem, FooterLinkItem, SocialLink, AISuggestion, ServiceItem } from './types';
-import { Github, Linkedin, Twitter, Instagram, Code, Camera, Layers, WandSparkles, Bot, Film, Image as ImageIcon, Palette, MessageSquareText, Paintbrush } from 'lucide-react';
+import type { NavLink, Skill, ExperienceItem, FooterLinkItem, SocialLink, AISuggestion, ServiceItem, ResumeStatusData } from './types';
+import { Github, Linkedin, Twitter, Instagram, Code, Camera, Layers, WandSparkles, Bot, Film, Image as ImageIcon, Palette, MessageSquareText, Paintbrush, Briefcase, GraduationCap, Star, Award, Zap } from 'lucide-react';
 
 export const siteConfig = {
   name: "jasonn.zip",
@@ -119,4 +119,60 @@ export const initialFilters: AISuggestion['filters'] = {
   hueRotate: 0,
   invert: 0,
   blur: 0,
+};
+
+export const resumeStatusData: ResumeStatusData = {
+  userName: "Jason",
+  userInitial: "J",
+  updates: [
+    {
+      id: "exp1",
+      category: "Pengalaman",
+      icon: Briefcase,
+      content: "Pendiri di Weply Studio (sekarang Zylo), memimpin inovasi produk digital.",
+      timestamp: "2021 - Sekarang",
+    },
+    {
+      id: "skill1",
+      category: "Keahlian Utama",
+      icon: Code,
+      content: "Pengembangan Web (React, Next.js, Vue, PHP, Tailwind CSS).",
+      timestamp: "Mahir",
+    },
+    {
+      id: "skill2",
+      category: "Keahlian Kreatif",
+      icon: Palette,
+      content: "Desain UI/UX, Fotografi, Video Editing (Capcut, Lightroom, Canva).",
+      timestamp: "Terampil",
+    },
+    {
+      id: "skill3",
+      category: "Solusi AI",
+      icon: Bot,
+      content: "Integrasi AI & Pengembangan Fitur Cerdas dengan Genkit.",
+      timestamp: "Berkembang",
+    },
+    {
+      id: "edu1",
+      category: "Pendidikan",
+      icon: GraduationCap,
+      content: "Belajar Mandiri & Kursus Online di bidang Web Development dan Desain Grafis.",
+      timestamp: "Berkelanjutan",
+    },
+    {
+      id: "achieve1",
+      category: "Pencapaian",
+      icon: Award,
+      content: "Berhasil meluncurkan beberapa proyek web dan membangun Weply Studio.",
+      timestamp: "Signifikan",
+    },
+     {
+      id: "passion1",
+      category: "Minat",
+      icon: Zap,
+      content: "Tertarik pada perpaduan teknologi, seni, dan solusi AI yang inovatif.",
+      timestamp: "Selalu Ingin Tahu",
+    },
+  ],
 };

@@ -87,3 +87,18 @@ export interface ColorGradingSuggesterInput {
 export interface ColorGradingSuggesterOutput {
   suggestions: AISuggestion[];
 }
+
+// Types for WhatsApp-style Resume Status
+export interface ResumeStatusUpdate {
+  id: string;
+  category: string; // e.g., "Pengalaman", "Pendidikan", "Keahlian"
+  content: string;
+  timestamp: string; // e.g., "Baru saja", "Kemarin", "Oktober 2023"
+  icon?: LucideIcon;
+}
+
+export interface ResumeStatusData {
+  userName: string;
+  userInitial: string;
+  updates: ResumeStatusUpdate[];
+}
