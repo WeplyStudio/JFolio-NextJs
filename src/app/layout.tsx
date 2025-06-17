@@ -1,12 +1,12 @@
 
 import type { Metadata } from 'next';
 import './globals.css';
-import { Toaster } from "@/components/ui/toaster"; // Re-added for portfolio contact form
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'Portofolio Saya | Developer & Kreator', // Updated for portfolio
-  description: 'Selamat datang di portofolio pribadi saya. Temukan proyek, fotografi, dan keahlian saya.', // Updated for portfolio
-  keywords: "portofolio, developer, fotografer, desain web, react, nextjs, editor foto ai, layanan, pengembangan web, solusi ai",
+  title: 'Kripsyfolio | Portofolio Jason',
+  description: 'Selamat datang di Kripsyfolio, portofolio pribadi Jason yang menampilkan proyek pengembangan, fotografi, dan keahlian lainnya.',
+  keywords: "kripsyfolio, jason, portofolio, developer, fotografer, desain web, react, nextjs, editor foto ai, layanan, pengembangan web, solusi ai, seo generator",
 };
 
 export default function RootLayout({
@@ -22,7 +22,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
           rel="stylesheet"
         />
       </head>

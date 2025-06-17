@@ -1,44 +1,46 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%; 
-    --foreground: 222.2 84% 4.9%;
+    --background: 230 10% 96%; /* #EEEEEE Very light gray */
+    --foreground: 222.2 84% 4.9%; /* Default dark text */
 
-    --card: 0 0% 100%;
+    --card: 0 0% 100%; /* White for cards */
     --card-foreground: 222.2 84% 4.9%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Primary is blue, matching 'blue-600' from EasyKripsi */
-    --primary: 217 91.2% 59.8%; 
-    --primary-foreground: 0 0% 100%;
+    /* Primary color: Light slate blue (#778DA9) */
+    --primary: 220 18% 60%; /* HSL for #778DA9 */
+    --primary-foreground: 0 0% 100%; /* White text on primary */
     
-    /* Secondary is a lighter gray/blue */
-    --secondary: 210 40% 96.1%; 
+    /* Secondary color: (using a slightly darker version of background for subtle sections) */
+    --secondary: 230 10% 90%; 
     --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 210 40% 96.1%; 
+    --muted: 230 10% 90%; 
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    /* Accent is also blue for this theme */
-    --accent: 217 91.2% 59.8%;
-    --accent-foreground: 0 0% 100%;
+    /* Accent color: Muted cool grayish-blue (#415A77) */
+    --accent: 215 29% 36%; /* HSL for #415A77 */
+    --accent-foreground: 0 0% 100%; /* White text on accent */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%; 
-    --input: 214.3 31.8% 91.4%;
-    --ring: 217 91.2% 59.8%; 
+    --border: 230 10% 85%; /* Lighter border */
+    --input: 230 10% 88%; /* Slightly different input background */
+    --ring: 220 18% 60%; /* Primary color for rings */
 
     --radius: 0.5rem;
   }
 
   .dark {
+    /* Dark theme variant if needed in the future, for now Kripsyfolio is light */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
@@ -48,8 +50,8 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217 91.2% 59.8%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 220 18% 60%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -57,15 +59,15 @@
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 215 29% 36%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 217 91.2% 59.8%;
+    --ring: 220 18% 60%;
   }
 }
 
@@ -75,16 +77,38 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Plus Jakarta Sans', sans-serif; /* EasyKripsi font */
+    font-family: 'Inter', sans-serif; /* Kripsyfolio font */
     font-feature-settings: "rlig" 1, "calt" 1; 
+  }
+
+  .font-headline {
+    font-family: 'Inter', sans-serif;
+  }
+  .font-body {
+     font-family: 'Inter', sans-serif;
   }
 
   .container {
     @apply mx-auto px-4 sm:px-6 lg:px-8;
   }
+}
 
-  /* Headings */
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-headline;
-  }
+/* For RotatingText component animations */
+.rotating-text-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.rotating-text-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.rotating-text-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+.rotating-text-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms, transform 300ms;
 }

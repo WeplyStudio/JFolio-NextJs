@@ -2,97 +2,158 @@
 "use client";
 
 import type { FC } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { useState, useEffect, useCallback } from 'react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { X, Briefcase, GraduationCap, Star, Code, Palette, Bot, Award, Zap } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import type { ResumeStatusData, ResumeStatusUpdate } from '@/lib/types';
-import { SectionWrapper } from './SectionWrapper';
-import type { LucideIcon } from 'lucide-react';
+import { Progress } from '@/components/ui/progress'; // We'll use this for individual segment progress later if auto-advancing
 
 interface ResumeStatusSectionProps {
   data: ResumeStatusData;
   isOpen: boolean;
   onClose: () => void;
+  initialStatusIndex?: number;
 }
 
-const iconMap: { [key: string]: LucideIcon } = {
-  Briefcase,
-  GraduationCap,
-  Star,
-  Code,
-  Palette,
-  Bot,
-  Award,
-  Zap,
-};
+export const ResumeStatusSection: FC<ResumeStatusSectionProps> = ({
+  data,
+  isOpen,
+  onClose,
+  initialStatusIndex = 0,
+}) => {
+  const [currentStatusIndex, setCurrentStatusIndex] = useState(initialStatusIndex);
+  const [animateOut, setAnimateOut] = useState(false);
 
-export const ResumeStatusSection: FC<ResumeStatusSectionProps> = ({ data, isOpen, onClose }) => {
-  if (!isOpen) {
+  const totalStatuses = data.updates.length;
+  const currentUpdate = data.updates[currentStatusIndex];
+
+  const handleClose = useCallback(() => {
+    setAnimateOut(true);
+    setTimeout(() => {
+      onClose();
+      setAnimateOut(false);
+      setCurrentStatusIndex(0); // Reset for next open
+    }, 300); // Match animation duration
+  }, [onClose]);
+
+  const goToNextStatus = useCallback(() => {
+    if (currentStatusIndex < totalStatuses - 1) {
+      setCurrentStatusIndex((prev) => prev + 1);
+    } else {
+      handleClose(); // Close when last status is finished
+    }
+  }, [currentStatusIndex, totalStatuses, handleClose]);
+
+  const goToPreviousStatus = useCallback(() => {
+    if (currentStatusIndex > 0) {
+      setCurrentStatusIndex((prev) => prev - 1);
+    }
+  }, [currentStatusIndex]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    setCurrentStatusIndex(initialStatusIndex); // Reset to initial when opened
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowRight') {
+        goToNextStatus();
+      } else if (event.key === 'ArrowLeft') {
+        goToPreviousStatus();
+      } else if (event.key === 'Escape') {
+        handleClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, initialStatusIndex, goToNextStatus, goToPreviousStatus, handleClose]);
+
+
+  if (!isOpen && !animateOut) {
     return null;
   }
 
   return (
-    <SectionWrapper id="resume-status" className="py-12 md:py-16 bg-secondary/20">
-      <Card className="max-w-2xl mx-auto shadow-2xl border-border/70 bg-card overflow-hidden relative animate-in fade-in-50 zoom-in-90 duration-300">
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={onClose}
-          className="absolute top-4 right-4 text-muted-foreground hover:text-primary z-10"
-          aria-label="Tutup status resume"
-        >
-          <X className="h-6 w-6" />
-        </Button>
-        
-        <CardHeader className="border-b border-border/50 bg-muted/30 p-6">
-          <div className="flex items-center space-x-4">
-            <Avatar className="h-16 w-16 border-2 border-primary shadow-md">
-              {/* <AvatarImage src={data.userImageUrl || `https://placehold.co/100x100.png`} alt={data.userName} /> */}
-              <AvatarFallback className="text-2xl bg-primary text-primary-foreground">
+    <div
+      className={`fixed inset-0 z-[100] flex flex-col bg-primary text-primary-foreground transition-opacity duration-300
+                  ${isOpen && !animateOut ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="resume-status-title"
+    >
+      {/* Progress Segments */}
+      <div className="pt-3 px-3 w-full">
+        <div className="flex w-full gap-1 mb-2">
+          {data.updates.map((_, index) => (
+            <div
+              key={`progress-${index}`}
+              className="h-1 flex-1 rounded-full bg-primary-foreground/30"
+            >
+              <div
+                className={`h-full rounded-full bg-primary-foreground transition-all duration-200 ${
+                  index < currentStatusIndex ? 'w-full' : index === currentStatusIndex ? 'w-1/2' : 'w-0' // Simple progress for current, full for past
+                }`}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Header: User Info & Close Button */}
+        <div className="flex justify-between items-center w-full mb-3">
+          <div className="flex items-center gap-2">
+            <Avatar className="h-8 w-8 border-2 border-primary-foreground/50">
+              {/* <AvatarImage src={data.userImageUrl} alt={data.userName} /> */}
+              <AvatarFallback className="text-sm bg-primary-foreground text-primary">
                 {data.userInitial}
               </AvatarFallback>
             </Avatar>
-            <div>
-              <CardTitle className="text-2xl font-bold text-primary font-headline">Status Resume: {data.userName}</CardTitle>
-              <CardDescription className="text-muted-foreground">Sekilas tentang perjalanan profesional saya.</CardDescription>
-            </div>
+            <span id="resume-status-title" className="font-semibold text-sm">{data.userName}</span>
+            <span className="text-xs text-primary-foreground/70">{currentUpdate?.timestamp}</span>
           </div>
-        </CardHeader>
-        
-        <CardContent className="p-0 max-h-[60vh] overflow-y-auto">
-          <ul className="divide-y divide-border/40">
-            {data.updates.map((update) => {
-              const IconComponent = update.icon;
-              return (
-                <li key={update.id} className="p-6 hover:bg-muted/20 transition-colors duration-150">
-                  <div className="flex items-start space-x-4">
-                    {IconComponent && (
-                      <div className="p-3 bg-primary/10 rounded-full mt-1">
-                        <IconComponent className="h-6 w-6 text-primary" />
-                      </div>
-                    )}
-                    <div className="flex-1">
-                      <div className="flex justify-between items-baseline mb-1">
-                        <h4 className="text-lg font-semibold text-foreground">{update.category}</h4>
-                        <p className="text-xs text-muted-foreground">{update.timestamp}</p>
-                      </div>
-                      <p className="text-sm text-foreground/80 leading-relaxed">
-                        {update.content}
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </CardContent>
-         <div className="p-6 border-t border-border/50 bg-muted/30 text-center">
-            <Button onClick={onClose} variant="outline" className="w-full sm:w-auto">
-                Tutup Status
-            </Button>
+          <Button variant="ghost" size="icon" onClick={handleClose} className="text-primary-foreground hover:bg-primary-foreground/10 h-8 w-8">
+            <X className="h-5 w-5" />
+            <span className="sr-only">Tutup Status</span>
+          </Button>
         </div>
-      </Card>
-    </SectionWrapper>
+      </div>
+
+      {/* Content Area & Navigation */}
+      <div className="flex-1 flex flex-col items-center justify-center text-center w-full relative overflow-hidden px-4">
+        {/* Navigation Tappable Areas */}
+        <div
+          className="absolute inset-y-0 left-0 w-1/3 cursor-pointer"
+          onClick={goToPreviousStatus}
+          aria-label="Status Sebelumnya"
+        />
+        <div
+          className="absolute inset-y-0 right-0 w-1/3 cursor-pointer"
+          onClick={goToNextStatus}
+          aria-label="Status Berikutnya"
+        />
+
+        {/* Status Content */}
+        {currentUpdate && (
+          <div className="animate-in fade-in-50 duration-500">
+            {currentUpdate.icon && (
+                <currentUpdate.icon className="h-12 w-12 text-primary-foreground/80 mx-auto mb-4" />
+            )}
+            <h3 className="text-2xl md:text-3xl font-bold mb-2 leading-tight">{currentUpdate.category}</h3>
+            <p className="text-base md:text-lg text-primary-foreground/90 max-w-md mx-auto whitespace-pre-line">
+              {currentUpdate.content}
+            </p>
+          </div>
+        )}
+      </div>
+      
+      {/* Navigation Hint (Optional) */}
+      <div className="pb-4 px-4 text-center">
+        <p className="text-xs text-primary-foreground/60">
+          Ketuk sisi kiri/kanan untuk navigasi atau tekan Esc untuk menutup.
+        </p>
+      </div>
+    </div>
   );
 };

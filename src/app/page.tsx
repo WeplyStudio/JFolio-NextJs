@@ -10,7 +10,7 @@ import { WhatIDoSection } from './_components/WhatIDoSection';
 import { SeoToolSection } from './_components/SeoToolSection';
 import { ContactSection } from './_components/ContactSection';
 import { PhotoEditorSection } from './_components/PhotoEditorSection';
-import { ResumeStatusSection } from './_components/ResumeStatusSection';
+import { ResumeStatusSection } from './_components/ResumeStatusSection'; // Updated import
 import { resumeStatusData } from '@/lib/data';
 
 
@@ -26,13 +26,7 @@ export default function PortfolioPage() {
       <Header />
       <main className="flex-grow">
         <HeroSection onToggleResumeStatus={toggleResumeStatusHandler} />
-        {showResumeStatus && (
-          <ResumeStatusSection 
-            isOpen={showResumeStatus} 
-            onClose={toggleResumeStatusHandler} 
-            data={resumeStatusData} 
-          />
-        )}
+        {/* ResumeStatusSection is now a modal, rendered outside normal flow if open */}
         <AboutSection />
         <WhatIDoSection />
         <PhotoEditorSection />
@@ -40,6 +34,13 @@ export default function PortfolioPage() {
         <ContactSection />
       </main>
       <Footer />
+      
+      {/* Conditionally render ResumeStatusSection as a modal overlay */}
+      <ResumeStatusSection 
+        isOpen={showResumeStatus} 
+        onClose={toggleResumeStatusHandler} 
+        data={resumeStatusData} 
+      />
     </div>
   );
 }
