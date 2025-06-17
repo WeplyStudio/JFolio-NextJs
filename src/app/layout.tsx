@@ -4,7 +4,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'Jasonn.zip - Portofolio,
+  title: 'Jasonn.zip - Portofolio',
   description: 'Jasonn.zip Portofolio Website',
   keywords: "jason, jasonn.zip, portofolio, jason web",
 };
