@@ -4,9 +4,9 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'Kripsyfolio | Portofolio Jason',
-  description: 'Selamat datang di Kripsyfolio, portofolio pribadi Jason yang menampilkan proyek pengembangan, fotografi, dan keahlian lainnya.',
-  keywords: "kripsyfolio, jason, portofolio, developer, fotografer, desain web, react, nextjs, editor foto ai, layanan, pengembangan web, solusi ai, seo generator",
+  title: 'Jasonn.zip - Portofolio,
+  description: 'Jasonn.zip Portofolio Website',
+  keywords: "jason, jasonn.zip, portofolio, jason web",
 };
 
 export default function RootLayout({
