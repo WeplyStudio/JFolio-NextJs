@@ -2,12 +2,13 @@
 "use client";
 
 import type { FC } from 'react';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import type { ResumeStatusData, ResumeStatusUpdate } from '@/lib/types';
-import { Progress } from '@/components/ui/progress'; // We'll use this for individual segment progress later if auto-advancing
+// Progress component is not used for individual segment fill-up animation yet
+// import { Progress } from '@/components/ui/progress'; 
 
 interface ResumeStatusSectionProps {
   data: ResumeStatusData;
@@ -15,6 +16,8 @@ interface ResumeStatusSectionProps {
   onClose: () => void;
   initialStatusIndex?: number;
 }
+
+const AUTO_ADVANCE_DURATION = 4000; // 4 seconds
 
 export const ResumeStatusSection: FC<ResumeStatusSectionProps> = ({
   data,
@@ -24,36 +27,56 @@ export const ResumeStatusSection: FC<ResumeStatusSectionProps> = ({
 }) => {
   const [currentStatusIndex, setCurrentStatusIndex] = useState(initialStatusIndex);
   const [animateOut, setAnimateOut] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const totalStatuses = data.updates.length;
   const currentUpdate = data.updates[currentStatusIndex];
 
+  const clearTimer = useCallback(() => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+  }, []);
+
   const handleClose = useCallback(() => {
+    clearTimer();
     setAnimateOut(true);
     setTimeout(() => {
       onClose();
       setAnimateOut(false);
       setCurrentStatusIndex(0); // Reset for next open
     }, 300); // Match animation duration
-  }, [onClose]);
+  }, [onClose, clearTimer]);
 
-  const goToNextStatus = useCallback(() => {
+  const goToNextStatus = useCallback((isAutoAdvance: boolean = false) => {
+    clearTimer();
     if (currentStatusIndex < totalStatuses - 1) {
       setCurrentStatusIndex((prev) => prev + 1);
     } else {
       handleClose(); // Close when last status is finished
     }
-  }, [currentStatusIndex, totalStatuses, handleClose]);
+  }, [currentStatusIndex, totalStatuses, handleClose, clearTimer]);
 
   const goToPreviousStatus = useCallback(() => {
+    clearTimer();
     if (currentStatusIndex > 0) {
       setCurrentStatusIndex((prev) => prev - 1);
     }
-  }, [currentStatusIndex]);
+  }, [currentStatusIndex, clearTimer]);
+
+
+  useEffect(() => {
+    if (isOpen) {
+      setCurrentStatusIndex(initialStatusIndex); // Reset to initial when opened
+    } else {
+      clearTimer(); // Clear timer if closed externally
+    }
+  }, [isOpen, initialStatusIndex, clearTimer]);
+
 
   useEffect(() => {
     if (!isOpen) return;
-    setCurrentStatusIndex(initialStatusIndex); // Reset to initial when opened
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowRight') {
@@ -69,7 +92,24 @@ export const ResumeStatusSection: FC<ResumeStatusSectionProps> = ({
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen, initialStatusIndex, goToNextStatus, goToPreviousStatus, handleClose]);
+  }, [isOpen, goToNextStatus, goToPreviousStatus, handleClose]);
+
+
+  useEffect(() => {
+    if (isOpen && currentStatusIndex < totalStatuses - 1) {
+      clearTimer(); // Clear existing timer before setting a new one
+      timerRef.current = setTimeout(() => {
+        goToNextStatus(true);
+      }, AUTO_ADVANCE_DURATION);
+    } else {
+      clearTimer(); // Clear timer if it's the last status or not open
+    }
+
+    // Cleanup timer on component unmount or when dependencies change
+    return () => {
+      clearTimer();
+    };
+  }, [isOpen, currentStatusIndex, totalStatuses, goToNextStatus, clearTimer]);
 
 
   if (!isOpen && !animateOut) {
@@ -90,12 +130,15 @@ export const ResumeStatusSection: FC<ResumeStatusSectionProps> = ({
           {data.updates.map((_, index) => (
             <div
               key={`progress-${index}`}
-              className="h-1 flex-1 rounded-full bg-primary-foreground/30"
+              className="h-1 flex-1 rounded-full bg-primary-foreground/30 overflow-hidden" // Added overflow-hidden for potential animation
             >
               <div
                 className={`h-full rounded-full bg-primary-foreground transition-all duration-200 ${
-                  index < currentStatusIndex ? 'w-full' : index === currentStatusIndex ? 'w-1/2' : 'w-0' // Simple progress for current, full for past
+                  index < currentStatusIndex ? 'w-full' : 
+                  index === currentStatusIndex ? 'w-1/2' : // Could be 'w-0' initially and animate width with timer
+                  'w-0'
                 }`}
+                 // If individual segment animation is desired, style.width would be animated here
               />
             </div>
           ))}
@@ -125,12 +168,12 @@ export const ResumeStatusSection: FC<ResumeStatusSectionProps> = ({
         {/* Navigation Tappable Areas */}
         <div
           className="absolute inset-y-0 left-0 w-1/3 cursor-pointer"
-          onClick={goToPreviousStatus}
+          onClick={() => goToPreviousStatus()}
           aria-label="Status Sebelumnya"
         />
         <div
           className="absolute inset-y-0 right-0 w-1/3 cursor-pointer"
-          onClick={goToNextStatus}
+          onClick={() => goToNextStatus()}
           aria-label="Status Berikutnya"
         />
 
