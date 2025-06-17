@@ -8,6 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { X, Briefcase, GraduationCap, Star, Code, Palette, Bot, Award, Zap } from 'lucide-react';
 import type { ResumeStatusData, ResumeStatusUpdate } from '@/lib/types';
 import { SectionWrapper } from './SectionWrapper';
+import type { LucideIcon } from 'lucide-react';
 
 interface ResumeStatusSectionProps {
   data: ResumeStatusData;
