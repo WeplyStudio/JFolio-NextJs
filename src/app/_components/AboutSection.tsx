@@ -4,7 +4,7 @@ import { aboutData } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { Lightbulb, Briefcase, GraduationCap, Zap } from 'lucide-react'; // Using Zap for skills icon
+import { Lightbulb, Briefcase, GraduationCap, Zap, Flame } from 'lucide-react'; // Using Zap for skills icon
 
 export function AboutSection() {
   return (
