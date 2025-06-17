@@ -1,6 +1,6 @@
 
-import type { NavLink, Photo, Skill, ExperienceItem, FooterLinkItem, SocialLink, AISuggestion, ServiceItem } from './types';
-import { Github, Linkedin, Twitter, Instagram, Code, Camera, Briefcase, GraduationCap, Lightbulb, Bot, BarChart2, PenTool, WandSparkles, Film, Image as ImageIcon, Palette, MessageSquareText, Layers, Smartphone, Server, Search, Paintbrush, Rocket } from 'lucide-react';
+import type { NavLink, Skill, ExperienceItem, FooterLinkItem, SocialLink, AISuggestion, ServiceItem } from './types';
+import { Github, Linkedin, Twitter, Instagram, Code, Camera, Layers, WandSparkles, Bot, Film, Image as ImageIcon, Palette, MessageSquareText, Paintbrush } from 'lucide-react';
 
 export const siteConfig = {
   name: "jasonn.zip",
@@ -22,7 +22,6 @@ export const navLinks: NavLink[] = [
   { href: "#about", label: "Tentang Saya" },
   { href: "#services", label: "Layanan", icon: Layers },
   { href: "#photo-editor", label: "Editor Foto AI", icon: WandSparkles },
-  { href: "#photography", label: "Fotografi" },
   { href: "#seo-tool", label: "Alat SEO" },
   { href: "#contact", label: "Kontak" },
 ];
@@ -88,49 +87,12 @@ export const whatIDoData: ServiceItem[] = [
   },
 ];
 
-
-export const photosData: Photo[] = [
-  {
-    id: "p1",
-    title: "Matahari Terbit di Gunung",
-    description: "Cahaya pagi hari menyinari puncak-puncak.",
-    imageUrl: "https://placehold.co/400x533.png",
-    imageHint: "mountain landscape sunrise",
-    category: "Lanskap",
-  },
-  {
-    id: "p2",
-    title: "Refleksi Perkotaan",
-    description: "Lampu kota terpantul setelah badai hujan.",
-    imageUrl: "https://placehold.co/400x533.png",
-    imageHint: "cityscape night rain",
-    category: "Perkotaan",
-  },
-  {
-    id: "p3",
-    title: "Jalur Hutan",
-    description: "Jalur tenang berkelok-kelok melalui hutan lebat.",
-    imageUrl: "https://placehold.co/400x533.png",
-    imageHint: "forest path nature",
-    category: "Alam",
-  },
-  {
-    id: "p4",
-    title: "Ombak Pesisir",
-    description: "Ombak kuat menghantam pantai.",
-    imageUrl: "https://placehold.co/400x533.png",
-    imageHint: "ocean waves coast",
-    category: "Pemandangan Laut",
-  },
-];
-
 export const footerLinks = {
   explore: [
     { href: "#home", label: "Beranda" },
     { href: "#about", label: "Tentang Saya" },
     { href: "#services", label: "Layanan"},
     { href: "#photo-editor", label: "Editor Foto AI" },
-    { href: "#photography", label: "Galeri" },
     { href: "#seo-tool", label: "Alat SEO"},
   ],
   connect: [

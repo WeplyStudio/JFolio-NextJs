@@ -23,15 +23,6 @@ export interface ServiceItem {
   tags?: string[];
 }
 
-export interface Photo {
-  id: string;
-  title: string;
-  description?: string;
-  imageUrl: string;
-  imageHint?: string;
-  category?: string;
-}
-
 export interface Skill {
   name: string;
   icon?: LucideIcon;
