@@ -14,8 +14,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Primary color: Light slate blue (#778DA9) */
-    --primary: 220 18% 60%; /* HSL for #778DA9 */
+    /* Primary color: Standard vibrant blue (#2563EB) */
+    --primary: 221 83% 53%; /* HSL for #2563EB */
     --primary-foreground: 0 0% 100%; /* White text on primary */
     
     /* Secondary color: (using a slightly darker version of background for subtle sections) */
@@ -25,7 +25,7 @@
     --muted: 230 10% 90%; 
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    /* Accent color: Muted cool grayish-blue (#415A77) */
+    /* Accent color: Muted cool grayish-blue (#415A77) - Kept from original Kripsyfolio for contrast if needed */
     --accent: 215 29% 36%; /* HSL for #415A77 */
     --accent-foreground: 0 0% 100%; /* White text on accent */
 
@@ -34,7 +34,7 @@
 
     --border: 230 10% 85%; /* Lighter border */
     --input: 230 10% 88%; /* Slightly different input background */
-    --ring: 220 18% 60%; /* Primary color for rings */
+    --ring: 221 83% 53%; /* Primary color for rings */
 
     --radius: 0.5rem;
   }
@@ -50,7 +50,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 220 18% 60%;
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -67,7 +67,7 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 220 18% 60%;
+    --ring: 221 83% 53%;
   }
 }
 
