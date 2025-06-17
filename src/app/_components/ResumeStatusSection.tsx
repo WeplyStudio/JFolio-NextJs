@@ -3,12 +3,12 @@
 
 import type { FC } from 'react';
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { X } from 'lucide-react';
+import { X, BadgeCheck } from 'lucide-react'; // Ditambahkan BadgeCheck
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import type { ResumeStatusData } from '@/lib/types';
 
-const AUTO_ADVANCE_DURATION = 4000; // 4 seconds
+const AUTO_ADVANCE_DURATION = 4000; // 4 detik
 
 export const ResumeStatusSection: FC<ResumeStatusData & {
   isOpen: boolean;
@@ -23,7 +23,7 @@ export const ResumeStatusSection: FC<ResumeStatusData & {
   initialStatusIndex = 0,
 }) => {
   const [currentStatusIndex, setCurrentStatusIndex] = useState(initialStatusIndex);
-  const [segmentProgress, setSegmentProgress] = useState(0); // Progress for the current segment (0-100)
+  const [segmentProgress, setSegmentProgress] = useState(0); // Progress untuk segmen saat ini (0-100)
   const [animateOut, setAnimateOut] = useState(false);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -50,16 +50,16 @@ export const ResumeStatusSection: FC<ResumeStatusData & {
     setTimeout(() => {
       onClose();
       setAnimateOut(false);
-      setCurrentStatusIndex(0); // Reset for next open
+      setCurrentStatusIndex(0); // Reset untuk pembukaan berikutnya
       setSegmentProgress(0);
-    }, 300); // Match animation duration
+    }, 300); // Sesuaikan dengan durasi animasi
   }, [onClose, clearTimers]);
 
   const goToNextStatus = useCallback((isAutoAdvance: boolean = false) => {
     clearTimers();
     if (currentStatusIndex < totalStatuses - 1) {
       setCurrentStatusIndex((prev) => prev + 1);
-      setSegmentProgress(0); // Reset progress for new segment
+      setSegmentProgress(0); // Reset progress untuk segmen baru
     } else {
       handleClose();
     }
@@ -69,7 +69,7 @@ export const ResumeStatusSection: FC<ResumeStatusData & {
     clearTimers();
     if (currentStatusIndex > 0) {
       setCurrentStatusIndex((prev) => prev - 1);
-      setSegmentProgress(0); // Reset progress for new segment
+      setSegmentProgress(0); // Reset progress untuk segmen baru
     }
   }, [currentStatusIndex, clearTimers]);
 
@@ -84,7 +84,7 @@ export const ResumeStatusSection: FC<ResumeStatusData & {
 
 
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen || !updates || updates.length === 0) return;
 
     const animateSegment = (timestamp: number) => {
       if (!segmentStartTimeRef.current) {
@@ -99,14 +99,12 @@ export const ResumeStatusSection: FC<ResumeStatusData & {
       }
     };
 
-    clearTimers(); // Clear any existing timers before starting new ones
-    segmentStartTimeRef.current = 0; // Reset start time for the animation frame
+    clearTimers(); 
+    segmentStartTimeRef.current = 0; 
     
-    // Start segment fill animation
     segmentAnimationRef.current = requestAnimationFrame(animateSegment);
 
-    // Set timer for auto-advancing to the next status
-    if (currentStatusIndex < totalStatuses) { // Check if there are statuses to advance to
+    if (currentStatusIndex < totalStatuses) { 
         timerRef.current = setTimeout(() => {
         goToNextStatus(true);
         }, AUTO_ADVANCE_DURATION);
@@ -128,7 +126,7 @@ export const ResumeStatusSection: FC<ResumeStatusData & {
       window.removeEventListener('keydown', handleKeyDown);
       clearTimers();
     };
-  }, [isOpen, currentStatusIndex, totalStatuses, goToNextStatus, goToPreviousStatus, handleClose, clearTimers]);
+  }, [isOpen, currentStatusIndex, totalStatuses, updates, goToNextStatus, goToPreviousStatus, handleClose, clearTimers]);
 
 
   if (!isOpen && !animateOut) {
@@ -171,7 +169,10 @@ export const ResumeStatusSection: FC<ResumeStatusData & {
                 {userInitial}
               </AvatarFallback>
             </Avatar>
-            <span id="resume-status-title" className="font-semibold text-sm">{userName}</span>
+            <div className="flex items-center gap-1">
+              <span id="resume-status-title" className="font-semibold text-sm">{userName}</span>
+              <BadgeCheck className="h-4 w-4 text-primary-foreground" /> 
+            </div>
             <span className="text-xs text-primary-foreground/70">{currentUpdate?.timestamp}</span>
           </div>
           <Button variant="ghost" size="icon" onClick={handleClose} className="text-primary-foreground hover:bg-primary-foreground/10 h-8 w-8">
@@ -218,3 +219,5 @@ export const ResumeStatusSection: FC<ResumeStatusData & {
     </div>
   );
 };
+
+    
