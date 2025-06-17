@@ -1,6 +1,6 @@
 
 import type { NavLink, Skill, ExperienceItem, FooterLinkItem, SocialLink, AISuggestion, ServiceItem, ResumeStatusData } from './types';
-import { Github, Linkedin, Twitter, Instagram, Code, Camera, Layers, WandSparkles, Bot, Film, Image as ImageIcon, Palette, MessageSquareText, Paintbrush, Briefcase, GraduationCap, Star, Award, Zap, Lightbulb } from 'lucide-react';
+import { Github, Linkedin, Twitter, Instagram, Code, Camera, Layers, WandSparkles, Bot, Film, Image as ImageIcon, Palette, MessageSquareText, Paintbrush, Briefcase, GraduationCap, Star, Award, Zap, Lightbulb, Flame } from 'lucide-react';
 
 export const siteConfig = {
   name: "jasonn.zip",
